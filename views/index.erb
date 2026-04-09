@@ -1,0 +1,136 @@
+<nav>
+  <span class="logo">暁秀祭2026</span>
+  <ul>
+    <li><a href="#about">スローガン</a></li>
+    <li><a href="#schedule">スケジュール</a></li>
+    <li><a href="#map">会場マップ</a></li>
+    <li><a href="#notice">外部からお越しの皆様へ</a></li>
+    <li><a href="#access">アクセス</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="tag">暁秀祭</p>
+  <h1>文化の部</h1>
+  <p class="date">2026/05/17</p>
+  <div class="countdown" id="countdown">
+  <span class="countdown-prefix">残り</span>
+  <div class="countdown-item">
+    <span class="countdown-num" id="weeks">0</span>
+    <span class="countdown-label">週</span>
+  </div>
+  <div class="countdown-item">
+    <span class="countdown-num" id="days">0</span>
+    <span class="countdown-label">日</span>
+  </div>
+  <div class="countdown-item">
+    <span class="countdown-num" id="hours">0</span>
+    <span class="countdown-label">時間</span>
+  </div>
+</div>
+
+<script>
+function updateCountdown() {
+  const festival = new Date('2026-05-17T00:00:00');
+  const now = new Date();
+  const diff = festival - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<p style="color:#fff;">本日開催！</p>';
+    return;
+  }
+
+  const totalHours = Math.floor(diff / (1000 * 60 * 60));
+  const weeks = Math.floor(totalHours / (7 * 24));
+  const days = Math.floor((totalHours % (7 * 24)) / 24);
+  const hours = totalHours % 24;
+
+  document.getElementById('weeks').textContent = weeks;
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000 * 60);
+</script>
+  <div class="hero-buttons">
+    <a href="/stage" class="hero-btn">ステージ企画と演奏</a>
+    <a href="/class" class="hero-btn">模擬店・キッチンカー情報</a>
+  </div>
+</div>
+
+<section id="about" class="about">
+  <h2>スローガン</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>スローガンに込めた思い</p>
+    </div>
+    <div class="about-image">
+      <img src="/img/hamayu.png">
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <h2>スケジュール</h2>
+  <p>スケジュール</p>
+</section>
+
+<section id="map">
+  <h2>会場マップ</h2>
+  <p>画像</p>
+</section>
+
+<section id="notice">
+  <h2>外部からお越しの皆様へ</h2>
+  <p>description</p>
+</section>
+
+<section id="access">
+  <h2>アクセス</h2>
+  <div class="info-grid">
+    <div class="info-block">
+      <div class="label">場所</div>
+      <div class="value">加藤学園暁秀中学校・高等学校</div>
+    </div>
+    <div class="info-block">
+      <div class="label">日にち</div>
+      <div class="value">2026/05/17</div>
+    </div>
+    <div class="info-block">
+      <div class="label">開始時間</div>
+      <div class="value">09:00</div>
+    </div>
+    <div class="info-block">
+      <div class="label">お問い合わせ</div>
+      <div class="value">info@artfest2026.jp</div>
+    </div>
+  </div>
+  <iframe
+    src="https://maps.google.com/maps?q=Katoh+Gakuen+Gyoshu+Junior+Senior+High+School&z=17&output=embed"
+    width="100%"
+    height="400"
+    style="border: none; border-radius: 12px; display: block; margin-top: 1.5rem;"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-block">
+      <div class="footer-logo">暁秀祭2026</div>
+      <p class="footer-desc">加藤学園暁秀高等学校<br>文化祭実行委員会</p>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">企画情報</div>
+      <ul class="footer-links">
+        <li><a href="/stage">ステージ企画と演奏</a></li>
+        <li><a href="/class">模擬店・キッチンカー情報</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 暁秀祭実行委員会. All rights reserved.</p>
+  </div>
+</footer>

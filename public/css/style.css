@@ -1,0 +1,108 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body { font-family: sans-serif; color: #333; background: #fff; }
+
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; border-bottom: 0.5px solid #e5e5e5; }
+nav .logo { font-size: 15px; font-weight: 500; }
+nav ul { list-style: none; display: flex; gap: 1.5rem; }
+nav ul a { font-size: 14px; color: #666; text-decoration: none; }
+
+.hero {
+  padding: 7rem 2rem;
+  text-align: center;
+  border-bottom: 0.5px solid #e5e5e5;
+  background-image: url('/img/school.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: darken;
+}
+.hero .tag { font-size: 3rem; color: #FFF5EB; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.1rem; }
+.hero h1 { font-size: 8rem; font-weight: 500; line-height: 1.2; margin-bottom: 1rem; color: #FFF5EB; }
+.hero .date { font-size: 2rem; color: #FFF5EB; }
+.hero-buttons { display: flex; gap: 5rem; justify-content: center; margin-top: 4rem; }
+.hero-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1.5rem 3rem; border: 1px solid #fff; border-radius: 8px; font-size: 16px; color: #333; background: #fff; text-decoration: none; transition: all 0.2s; }
+.hero-btn::after { content: '→'; transition: transform 0.2s; }
+.hero-btn:hover::after { transform: translateX(5px); }
+.hero-btn:hover { background: rgba(255,255,255,0.85); }
+
+section { padding: 4rem 2rem; border-bottom: 0.5px solid #e5e5e5; max-width: 800px; margin: 0 auto; }
+section#about { max-width: 800px; }
+.about-grid { display: flex; align-items: center; gap: 2rem; justify-content: flex-start; flex-wrap: wrap; }
+.about-text { flex: 1 1 420px; min-width: 280px; }
+.about-text p { max-width: 100%; }
+.about-image { flex: 0 0 260px; width: 100%; max-width: 260px; border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.about-image img { width: 100%; height: auto; display: block; }
+
+h2 { font-size: 18px; font-weight: 500; margin-bottom: 1.5rem; }
+
+.countdown { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+.countdown-item { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+.countdown-num { font-size: 3rem; font-weight: 500; color: #fff; line-height: 1; }
+.countdown-label { font-size: 13px; color: #FFF5EB; letter-spacing: 0.06em; }
+.countdown-prefix { font-size: 20px; color: #FFF5EB; align-self: center; letter-spacing: 0.06em; }
+
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.info-block .label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.info-block .value { font-size: 14px; color: #555; line-height: 1.8; }
+
+.map-placeholder { width: 100%; height: 240px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #aaa; border: 0.5px solid #e5e5e5; }
+
+.transport-item { display: flex; gap: 1.5rem; padding: 1rem 0; border-bottom: 0.5px solid #e5e5e5; }
+.transport-item:last-child { border-bottom: none; }
+.transport-item .icon { font-size: 20px; min-width: 32px; }
+.transport-item .info .title { font-size: 15px; font-weight: 500; }
+.transport-item .info .sub { font-size: 13px; color: #999; margin-top: 2px; }
+
+.artists-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.artist-card { background: #f9f9f9; border-radius: 12px; padding: 1.5rem; border: 0.5px solid #e5e5e5; }
+.artist-card .avatar { width: 50px; height: 50px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500; color: #666; margin-bottom: 1rem; }
+.artist-card .name { font-size: 15px; font-weight: 500; margin-bottom: 0.25rem; }
+.artist-card .role { font-size: 13px; color: #999; margin-bottom: 0.75rem; }
+.artist-card .bio { font-size: 13px; color: #555; line-height: 1.7; }
+
+.back-link { display: inline-block; margin: 2rem 2rem 0; font-size: 14px; color: #666; text-decoration: none; border-bottom: 0.5px solid #ccc; }
+
+footer { padding: 2rem; text-align: center; font-size: 13px; color: #aaa; margin-top: 4rem; }
+footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem; padding: 3rem 2rem 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; padding-bottom: 3rem; }
+.footer-logo { font-size: 18px; font-weight: 500; margin-bottom: 0.75rem; color: #212121;}
+.footer-desc { font-size: 13px; color: #555; line-height: 1.8; }
+.footer-heading { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-links a { font-size: 13px; color: #555; text-decoration: none; }
+.footer-links a:hover { color: #333; }
+.footer-info { font-size: 13px; color: #555; line-height: 1.8; }
+.footer-bottom { border-top: 0.5px solid #e5e5e5; padding: 1.5rem 0; text-align: center; font-size: 12px; color: #aaa; max-width: 900px; margin: 0 auto; }
+.footer-block { text-align: left; align-items: flex-start; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, auto); gap: 1rem; }
+.gallery-card { background: #f9f9f9; border: 0.5px solid #e5e5e5; border-radius: 12px; padding: 0; cursor: pointer; transition: background 0.2s; overflow: hidden; }
+.gallery-card:hover { background: #f0f0f0; }
+.gallery-name { font-size: 14px; font-weight: 500; margin-bottom: 0.25rem; padding: 0.75rem 1rem 0; }
+.gallery-tag { font-size: 12px; color: #999; padding: 0 1rem 1rem; }
+.gallery-img { width: 100%; height: 160px; object-fit: cover; object-position: center; border-radius: 8px 8px 0 0; margin-bottom: 0; display: block; }
+
+.modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.25rem; cursor: pointer; background: rgba(255,255,255,0.8); border: none; color: #333; border-radius: 50%; width: 32px; height: 32px; }
+.modal-title { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; padding: 1.25rem 1.25rem 0; }
+.modal-tag { font-size: 12px; color: #999; margin-bottom: 1rem; padding: 0 1.25rem; }
+.modal-desc { font-size: 14px; color: #555; line-height: 1.8; padding: 0 1.25rem 1.25rem; }
+.modal-img { width: 100%; height: auto; object-fit: contain; display: block; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; overflow-y: auto; padding: 2rem 0; }
+.modal-box { background: #fff; border-radius: 12px; padding: 0; max-width: 600px; width: 90%; position: relative; overflow: hidden; height: auto; margin: auto; }
+.modal-info-row { display: flex; gap: 1rem; font-size: 14px; margin-top: 0.5rem; margin-bottom: 1rem; }
+.modal-info-label { color: #aaa; min-width: 40px; }
+.modal-info-value { color: #555; }
+
+.program-card { display: flex; align-items: center; margin-top: 1.5rem; background: #f9f9f9; border: 0.5px solid #e5e5e5; border-radius: 12px; overflow: hidden; }
+.program-img { width: auto; max-width: 50%; height: auto; flex-shrink: 0; object-fit: contain; display: block; }
+.program-info { padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 0.75rem; flex: 1; justify-content: center; }
+.program-title { font-size: 16px; font-weight: 500; color: #333; }
+.program-detail { display: flex; flex-direction: column; gap: 0.5rem; }
+.program-row { display: flex; gap: 1rem; font-size: 14px; }
+.program-label { color: #aaa; min-width: 40px; }
+.program-value { color: #555; line-height: 1.8; }
+.program-session { font-size: 12px; color: #fff; background: #333; border-radius: 4px; padding: 0.2rem 0.6rem; display: inline-block; margin-bottom: 0.5rem; }
