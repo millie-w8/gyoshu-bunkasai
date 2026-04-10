@@ -7,10 +7,6 @@ get '/' do
   erb :index
 end
 
-get '/artists' do
-  erb :artists
-end
-
 get '/stage' do
   erb :stage
 end
