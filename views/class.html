@@ -108,7 +108,9 @@
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
   <div class="modal-box" onclick="event.stopPropagation()">
   <button class="modal-close" onclick="closeModal()">&times;</button>
-  <img class="modal-img" id="modalImg" src="" alt="">
+  <video class="modal-video" id="modalVideo" controls playsinline>
+    <source id="modalVideoSrc" src="" type="video/mp4">
+  </video>
   <div style="padding: 1.25rem 1.25rem 0;">
     <h3 class="modal-title" id="modalTitle"></h3>
     <div class="modal-tag" id="modalTag"></div>
@@ -124,30 +126,30 @@
 
 <script>
 const classData = {
-  class1:  { name: '3A', place: '場所を入力', img: 'img/sampleshop.jpeg', tag: 'フード',   desc: 'ここに説明を入力してください。' },
-  class2:  { name: '3B', place: '場所を入力', img: 'img/class2.jpg',       tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
-  class3:  { name: '3C', place: '場所を入力', img: 'img/class3.jpg',       tag: 'ゲーム',   desc: 'ここに説明を入力してください。' },
-  class4:  { name: '3D', place: '場所を入力', img: 'img/class4.jpg',       tag: 'アート',   desc: 'ここに説明を入力してください。' },
-  class5:  { name: '3a', place: '場所を入力', img: 'img/class5.jpg',       tag: '音楽',     desc: 'ここに説明を入力してください。' },
-  class6:  { name: '3Z', place: '場所を入力', img: 'img/class6.jpg',       tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
-  class7:  { name: '2A', place: '場所を入力', img: 'img/class7.jpg',       tag: 'フード',   desc: 'ここに説明を入力してください。' },
-  class8:  { name: '2B', place: '場所を入力', img: 'img/class8.jpg',       tag: 'ゲーム',   desc: 'ここに説明を入力してください。' },
-  class9:  { name: '2C', place: '場所を入力', img: 'img/class9.jpg',       tag: 'その他',   desc: 'ここに説明を入力してください。' },
-  class10: { name: '2D', place: '場所を入力', img: 'img/class10.jpg',      tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
-  class11: { name: '2α', place: '場所を入力', img: 'img/class11.jpg',      tag: 'エンタメ', desc: 'ここに説明を入力してください。' },
-  class12: { name: '2Z', place: '場所を入力', img: 'img/class12.jpg',      tag: 'ドリンク', desc: 'ここに説明を入力してください。' },
-  class13: { name: '1A', place: '場所を入力', img: 'img/class13.jpg',      tag: 'エンタメ', desc: 'ここに説明を入力してください。' },
-  class14: { name: '1B', place: '場所を入力', img: 'img/class14.jpg',      tag: 'フード',   desc: 'ここに説明を入力してください。' },
-  class15: { name: '1C', place: '場所を入力', img: 'img/class15.jpg',      tag: 'その他',   desc: 'ここに説明を入力してください。' },
-  class16: { name: '1D', place: '場所を入力', img: 'img/class16.jpg',      tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
-  class17: { name: '1α', place: '場所を入力', img: 'img/class17.jpg',      tag: '音楽',     desc: 'ここに説明を入力してください。' },
-  class18: { name: '1Z', place: '場所を入力', img: 'img/class18.jpg',      tag: 'その他',   desc: 'ここに説明を入力してください。' },
+  class1:  { name: '3A', place: '場所を入力', video: 'video/class1.mp4', tag: 'フード',   desc: 'ここに説明を入力してください。' },
+  class2:  { name: '3B', place: '場所を入力', video: 'video/class2.mp4', tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
+  class3:  { name: '3C', place: '場所を入力', video: 'video/class3.mp4', tag: 'ゲーム',   desc: 'ここに説明を入力してください。' },
+  class4:  { name: '3D', place: '場所を入力', video: 'video/class4.mp4', tag: 'アート',   desc: 'ここに説明を入力してください。' },
+  class5:  { name: '3a', place: '場所を入力', video: 'video/class5.mp4', tag: '音楽',     desc: 'ここに説明を入力してください。' },
+  class6:  { name: '3Z', place: '場所を入力', video: 'video/class6.mp4', tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
+  class7:  { name: '2A', place: '場所を入力', video: 'video/class7.mp4', tag: 'フード',   desc: 'ここに説明を入力してください。' },
+  class8:  { name: '2B', place: '場所を入力', video: 'video/class8.mp4', tag: 'ゲーム',   desc: 'ここに説明を入力してください。' },
+  class9:  { name: '2C', place: '場所を入力', video: 'video/class9.mp4', tag: 'その他',   desc: 'ここに説明を入力してください。' },
+  class10: { name: '2D', place: '場所を入力', video: 'video/class10.mp4', tag: 'スイーツ', desc: 'ここに説明を入力してください。' },
+  class11: { name: '2α', place: '場所を入力', video: 'video/class11.mp4', tag: 'エンタメ', desc: 'ここに説明を入力してください。' },
+  class12: { name: '2Z', place: '場所を入力', video: 'video/class12.mp4', tag: 'ドリンク', desc: 'ここに説明を入力してください。' },
+  class13: { name: '1A', place: '場所を入力', video: 'video/class13.mp4', tag: 'エンタメ', desc: 'ここに説明を入力してください。' },
+  class14: { name: '1B', place: '場所を入力', video: 'video/class14.mp4', tag: 'フード',   desc: 'ここに説明を入力してください。' },
+  class15: { name: '1C', place:'場所を入力', video: 'video/class15.mp4', tag: 'その他', desc: 'ここに説明を入力してください。' },
+  class16: { name：'1D', place:'場所を入力', video:'video/class16.mp4', tag: 'スイーツ', desc:'ここに説明を入力してください。' },
+  class17: { name: '1α', place: '場所を入力', img: 'img/class17.jpg', tag: '音楽', desc: 'ここに説明を入力してください。' },
+  class18: { name: '1Z', place: '場所を入力', img: 'img/class18.jpg', tag: 'その他', desc: 'ここに説明を入力してください。' },
 };
 
 function openModal(id) {
   const data = classData[id];
-  document.getElementById('modalImg').src = data.img;
-  document.getElementById('modalImg').alt = data.name;
+  document.getElementById('modalVideoSrc').src = data.video;
+  document.getElementById('modalVideo').load();
   document.getElementById('modalTitle').textContent = data.name;
   document.getElementById('modalTag').textContent = data.tag;
   document.getElementById('modalPlace').textContent = data.place;
@@ -158,6 +160,9 @@ function openModal(id) {
 
 function closeModal() {
   document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('modalVideo').pause();
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
 }
 </script>
 
