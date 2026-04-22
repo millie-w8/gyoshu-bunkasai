@@ -114,7 +114,7 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .tt-program-left { right: 0; justify-content: flex-end; padding-right: 0.75rem; border-right: 3px solid #333; }
 .tt-program-right { left: 0; justify-content: flex-start; padding-left: 0.75rem; border-left: 3px solid #333; }
 
-.tt-tooltip { position: absolute; z-index: 100; width: 400px; background: #fff; border-radius: 4px; padding: 1rem; box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; transform: translateY(6px); }
+.tt-tooltip { position: absolute; z-index: 100; width: 220px; background: #fff; border-radius: 4px; padding: 1rem; box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; transform: translateY(6px); }
 .tt-program:hover .tt-tooltip { opacity: 1; transform: translateY(0); }
 .tt-tooltip-left { right: calc(100% + 12px); top: 50%; transform: translateY(calc(-50% + 6px)); }
 .tt-program:hover .tt-tooltip-left { transform: translateY(-50%); }
@@ -123,6 +123,34 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .tt-tooltip-title { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid #e5e5e5; }
 .tt-tooltip-desc { font-size: 12px; color: #555; line-height: 1.7; }
 .tt-tooltip-img { width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 0.75rem; display: block; }
+
+@media screen and (max-width: 960px) {
+  .tt-tooltip { width: 160px; padding: 0.75rem; }
+  .tt-tooltip-title { font-size: 12px; }
+  .tt-tooltip-desc { font-size: 11px; }
+  .tt-tooltip-img { height: 90px; }
+  .tt-tooltip-left { right: calc(100% + 8px); }
+  .tt-tooltip-right { left: calc(100% + 8px); }
+}
+
+@media screen and (max-width: 600px) {
+  .tt-tooltip { width: 130px; padding: 0.6rem; }
+  .tt-tooltip-title { font-size: 11px; margin-bottom: 0.4rem; padding-bottom: 0.4rem; }
+  .tt-tooltip-desc { font-size: 10px; line-height: 1.5; }
+  .tt-tooltip-img { height: 70px; margin-bottom: 0.5rem; }
+  .tt-tooltip-left { right: calc(100% + 6px); }
+  .tt-tooltip-right { left: calc(100% + 6px); }
+}
+
+@media screen and (max-width: 428px) {
+  .tt-tooltip { position: fixed; width: calc(100vw - 2rem); left: 1rem; right: 1rem; top: auto; bottom: 2rem; transform: translateY(10px); border-radius: 8px; padding: 1rem; }
+  .tt-program:hover .tt-tooltip { transform: translateY(0); }
+  .tt-tooltip-left { right: auto; top: auto; }
+  .tt-tooltip-right { left: auto; top: auto; }
+  .tt-tooltip-img { height: 140px; }
+  .tt-tooltip-title { font-size: 13px; }
+  .tt-tooltip-desc { font-size: 12px; }
+}
 
 .modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.25rem; cursor: pointer; background: rgba(255,255,255,0.8); border: none; color: #333; border-radius: 50%; width: 32px; height: 32px; }
 .modal-title { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; padding: 1.25rem 1.25rem 0; }
