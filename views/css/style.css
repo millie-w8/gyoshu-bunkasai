@@ -96,6 +96,34 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .gallery-tag { font-size: 12px; color: #999; padding: 0 1rem 1rem; }
 .gallery-img { width: 100%; height: 160px; object-fit: cover; object-position: center; border-radius: 0; margin-bottom: 0; display: block; }
 
+.timetable-wrapper { margin-top: 1.5rem; }
+.timetable-header-row { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0; margin-bottom: 2rem; }
+.timetable-header { font-size: 18px; font-weight: 500; color: #333; padding: 0.75rem 1rem;}
+.timetable-header-left { text-align: center;}
+.timetable-header-right { text-align: center;}
+.timetable-center-header { width: 80px; }
+.timetable-sub { font-size: 13px; color: #585858; margin-left: 0.4rem; }
+.timetable-body { display: flex; flex-direction: column; }
+.tt-row { display: grid; grid-template-columns: 1fr 80px 1fr; height: 36px; position: relative; }
+.tt-main { position: relative; display: flex; justify-content: flex-end; align-items: flex-start; }
+.tt-sub { position: relative; display: flex; justify-content: flex-start; align-items: flex-start; }
+.tt-center { display: flex; flex-direction: column; align-items: center; position: relative; }
+.tt-time { font-size: 15px; color: #555555; line-height: 1; padding-top: 2px; white-space: nowrap; }
+.tt-line { width: 1px; background: #e5e5e5; flex: 1; margin-top: 2px; }
+.tt-program { position: absolute; top: 0; z-index: 1; display: flex; align-items: center; font-size: 12px; color: #333; font-weight: 500; cursor: pointer; }
+.tt-program-left { right: 0; justify-content: flex-end; padding-right: 0.75rem; border-right: 3px solid #333; }
+.tt-program-right { left: 0; justify-content: flex-start; padding-left: 0.75rem; border-left: 3px solid #333; }
+
+.tt-tooltip { position: absolute; z-index: 100; width: 400px; background: #fff; border-radius: 4px; padding: 1rem; box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08); opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; transform: translateY(6px); }
+.tt-program:hover .tt-tooltip { opacity: 1; transform: translateY(0); }
+.tt-tooltip-left { right: calc(100% + 12px); top: 50%; transform: translateY(calc(-50% + 6px)); }
+.tt-program:hover .tt-tooltip-left { transform: translateY(-50%); }
+.tt-tooltip-right { left: calc(100% + 12px); top: 50%; transform: translateY(calc(-50% + 6px)); }
+.tt-program:hover .tt-tooltip-right { transform: translateY(-50%); }
+.tt-tooltip-title { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid #e5e5e5; }
+.tt-tooltip-desc { font-size: 12px; color: #555; line-height: 1.7; }
+.tt-tooltip-img { width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 0.75rem; display: block; }
+
 .modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.25rem; cursor: pointer; background: rgba(255,255,255,0.8); border: none; color: #333; border-radius: 50%; width: 32px; height: 32px; }
 .modal-title { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; padding: 1.25rem 1.25rem 0; }
 .modal-tag { font-size: 12px; color: #999; margin-bottom: 1rem; padding: 0 1.25rem; }
