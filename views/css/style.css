@@ -28,10 +28,21 @@ nav ul a:hover { background: rgba(255,255,255,0.12); color: #fff; transform: tra
 .hero h1 { font-family: 'Noto Sans JP', sans-serif; font-size: 8rem; font-weight: 500; line-height: 1.2; margin-bottom: 1rem; color: #FFF5EB; }
 .hero .date { font-size: 2rem; color: #FFF5EB; }
 .hero-buttons { display: flex; gap: 5rem; justify-content: center; margin-top: 4rem; }
-.hero-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1.5rem 3rem; border: 1px solid #fff; border-radius: 8px; font-size: 16px; color: #333; background: #fff; text-decoration: none; transition: all 0.2s; }
+.hero-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 1.5rem 3rem; border: 1px solid #fff; border-radius: 8px; font-size: 17px; color: #333; background: #fff; text-decoration: none; transition: all 0.2s; }
 .hero-btn::after { content: '→'; transition: transform 0.2s; }
 .hero-btn:hover::after { transform: translateX(5px); }
 .hero-btn:hover { background: rgba(255,255,255,0.85); }
+
+@supports (font: -apple-system-body) {
+    h1 {
+        font-weight: 800;
+    }
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    h1 {
+        -webkit-font-smoothing: antialiased;
+    }
+}
 
 section { padding: 4rem 2rem; border-bottom: 0.5px solid #e5e5e5; max-width: 800px; margin: 0 auto; }
 section#about { max-width: 800px; }
@@ -46,7 +57,7 @@ h2 { font-size: 20px; font-weight: 500; margin-bottom: 1.5rem; }
 section#about h2 {
   font-size: 3rem;
   font-family: 'Noto Sans JP', serif;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1.1;
 }
