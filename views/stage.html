@@ -170,8 +170,11 @@ window.addEventListener('DOMContentLoaded', () => {
         prog.className = 'tt-program tt-program-left';
         prog.style.height = (mainSlots[time].span * ROW_HEIGHT) + 'px';
         prog.textContent = mainSlots[time].label;
-        prog.addEventListener('mouseenter', () => showTooltip(mainSlots[time]));
-        prog.addEventListener('mouseleave', hideTooltip);
+        const btn = document.createElement('button');
+        btn.className = 'tt-info-btn';
+        btn.innerHTML = '▶';
+        btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(mainSlots[time]); });
+        prog.appendChild(btn);
         mainDiv.appendChild(prog);
       }
 
@@ -180,8 +183,11 @@ window.addEventListener('DOMContentLoaded', () => {
         prog.className = 'tt-program tt-program-right';
         prog.style.height = (subSlots[time].span * ROW_HEIGHT) + 'px';
         prog.textContent = subSlots[time].label;
-        prog.addEventListener('mouseenter', () => showTooltip(subSlots[time]));
-        prog.addEventListener('mouseleave', hideTooltip);
+        const btn = document.createElement('button');
+        btn.className = 'tt-info-btn';
+        btn.innerHTML = '▶';
+        btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(subSlots[time]); });
+        prog.appendChild(btn);
         subDiv.appendChild(prog);
       }
 
@@ -193,6 +199,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   buildTimetable();
+  document.addEventListener('click', hideTooltip);
 });
 </script>
 
