@@ -173,13 +173,17 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
   /* general */
   body { font-size: 10px; overflow-x: hidden; }
   h2 { font-size: 15px; }
-  section { padding: 2rem 0.5rem; max-width: 100%; }
+  section { padding: 2rem 2rem; max-width: 100%; }
+  .class-page section { padding: 2rem 0.1rem; max-width:120%; }
 
   /* nav */
-  nav { padding: 1rem 1.25rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
-  nav .logo { font-size: 10px; }
-  nav ul { gap: 1rem; flex-wrap: wrap; }
-  nav ul a { font-size: 10px; }
+  nav ul {
+    display: none; 
+  }
+  nav {
+    justify-content: center; 
+    padding: 1rem;
+  }
 
   /* hero */
   .hero {
