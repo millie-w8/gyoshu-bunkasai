@@ -157,6 +157,20 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .program-row-inline .program-label { color: #888; min-width: auto; }
 .program-row-inline .program-value { color: #333; }
 
+.pdf-container { margin: 1.5rem 0; display: flex; justify-content: left; }
+.pdf-link { display: inline-flex; align-items: center; gap: 12px; padding: 0.8rem 1.5rem; background-color: #ffffff; color: #333; text-decoration: none; border: 2px solid #333; border-radius: 8px; font-weight: 500; transition: all 0.2s ease; }
+.pdf-link:hover { background-color: #333; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+.pdf-icon { background: #d32f2f; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+
+/* Mobile Adjustments */
+@media screen and (max-width: 500px) {
+  .pdf-link {
+    width: 100%; /* Makes the button full width on phones */
+    justify-content: center;
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 860px) {
   nav { flex-direction: column; padding: 1rem 1rem 0.5rem; align-items: flex-start; }
   nav .logo { margin-bottom: 0.5rem; font-size: 14px; }
@@ -232,6 +246,8 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
   .schedule-item .time { font-size: 13px; }
   .schedule-item .info .title { font-size: 14px; }
   .schedule-item .info .sub { font-size: 13px; }
+
+  .pdf-link { width: 100%; justify-content: center; font-size: 14px; }
 
   /* artists */
   .artists { grid-template-columns: 1fr 1fr; }
