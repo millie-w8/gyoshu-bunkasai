@@ -35,25 +35,26 @@
 
 <script>
 const mainSlots = {
-  "8:40":  { label: "入場開始",           span: 1,  desc: "会場への入場を開始します。体育館にお集まりください。" },
-  "8:50":  { label: "オープニング",        span: 4,  desc: "暁秀祭のオープニングプログラム" },
-  "9:30":  { label: "GWO",               span: 3,  desc: "【曲目】<br>ARSENAL<br>ヘドウィグのテーマ<br>原神メドレー<br>「あんたがたどこさ」の主題による幻想曲", img: "img/suibu.jpg" },
-  "10:10": { label: "中学生合唱",         span: 10, desc: "中学生による合唱コンクール", chorus: true },
-  "12:30": { label: "箏曲部演奏",         span: 4,  desc: "箏曲部による演奏です。日本の伝統音楽をお楽しみください。" },
+  "8:40":  { label: "入場開始",           span: 1,  desc: "会場への入場を開始します。体育館にお集まりください。", noBtn: true},
+  "8:50":  { label: "オープニング",        span: 4,  desc: "暁秀祭のオープニングプログラム", noBtn: true },
+  "9:30":  { label: "GWO",               span: 3,  desc: "クラシック曲をお送りします。", img: "img/suibu.jpg" },
+  "10:10": { label: "中学合唱コンクール",    span: 11, desc: "年に一度の合唱祭。始業式から一ヶ月、団結力は深まっています。歌に想いをのせて、みんなを楽しませます！", chorus: true },
+  "12:00": { label: "Re:Blue",   span: 3, desc: "高1から高3の11人が出演する、再生デニム作品による特別ランウェイショーです。"},
+  "12:30": { label: "箏曲部演奏",         span: 4,  desc: "三味線と箏による演奏です。古くから伝わる日本の伝統芸能と現代音楽の交わりをお楽しみください！" },
   "13:10": { label: "GGT前半",           span: 4,  desc: "Gyoshu God Talentの前半戦です。生徒によるパフォーマンスをお楽しみください。" },
-  "13:50": { label: "中学生：暁秀王決勝", span: 3,  desc: "中学生部門の暁秀王決勝戦です。" },
-  "14:20": { label: "高校生：暁秀王決勝", span: 3,  desc: "高校生部門の暁秀王決勝戦です。" },
-  "14:50": { label: "暁秀王表彰式",       span: 1,  desc: "暁秀王の表彰式を行います。" },
+  "13:50": { label: "中学生：暁秀王決勝", span: 3,  desc: "中学生部門の暁秀王決勝戦です。", noBtn: true  },
+  "14:20": { label: "高校生：暁秀王決勝", span: 3,  desc: "高校生部門の暁秀王決勝戦です。", noBtn: true  },
+  "14:50": { label: "暁秀王表彰式",       span: 1,  desc: "暁秀王の表彰式を行います。", noBtn: true  },
   "15:00": { label: "中学合唱成績発表",   span: 1,  desc: "中学生合唱コンクールの成績発表" },
   "15:10": { label: "GGT後半",           span: 3,  desc: "Gyoshu God Talentの後半戦" },
-  "15:40": { label: "エンディング",       span: 4,  desc: "暁秀祭文化の部エンディングセレモニー" },
+  "15:40": { label: "エンディング",       span: 4,  desc: "暁秀祭文化の部エンディングセレモニー", noBtn: true  },
 };
 
 const subSlots = {
-  "9:30":  { label: "中学生：暁秀王予選", span: 4, desc: "中学生部門の暁秀王予選" },
-  "11:20": { label: "高校生：暁秀王予選", span: 4, desc: "高校生部門の暁秀王予選" },
-  "12:30": { label: "GWO",               span: 5, desc: "【曲目】<br>トライ・エヴリシング<br>GUTS！<br>好きすぎて滅！<br>とくべチュ、して", img: "img/suibu2.jpeg" },
-  "13:30": { label: "中央廊下：合唱部",   span: 6, desc: "合唱部が中央廊下で歌います。" },
+  "9:30":  { label: "中学生：暁秀王予選", span: 4, desc: "中学生部門の暁秀王予選", noBtn: true  },
+  "11:20": { label: "高校生：暁秀王予選", span: 4, desc: "高校生部門の暁秀王予選", noBtn: true  },
+  "12:30": { label: "GWO",               span: 5, desc: "「好きすぎて滅」、「とくべちゅして」など、今流行りの曲で暁秀祭を盛り上げます！", img: "img/suibu2.jpeg" },
+  "13:30": { label: "コンサート",   span: 6, desc: "有名J-POPから海外の合唱まで。中央廊下で合唱部が歌い上げます。みなさんに感動を届けられるよう、部員一同心を込めて歌います。" },
 };
 
 const chorusVideos = [
@@ -170,11 +171,13 @@ window.addEventListener('DOMContentLoaded', () => {
         prog.className = 'tt-program tt-program-left';
         prog.style.height = (mainSlots[time].span * ROW_HEIGHT) + 'px';
         prog.textContent = mainSlots[time].label;
-        const btn = document.createElement('button');
-        btn.className = 'tt-info-btn';
-        btn.innerHTML = '▶';
-        btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(mainSlots[time]); });
-        prog.appendChild(btn);
+        if (!mainSlots[time].noBtn) {
+          const btn = document.createElement('button');
+          btn.className = 'tt-info-btn';
+          btn.innerHTML = '▶';
+          btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(mainSlots[time]); });
+          prog.appendChild(btn);
+        }
         mainDiv.appendChild(prog);
       }
 
@@ -183,12 +186,14 @@ window.addEventListener('DOMContentLoaded', () => {
         prog.className = 'tt-program tt-program-right';
         prog.style.height = (subSlots[time].span * ROW_HEIGHT) + 'px';
         prog.textContent = subSlots[time].label;
-        const btn = document.createElement('button');
-        btn.className = 'tt-info-btn';
-        btn.innerHTML = '▶';
-        btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(subSlots[time]); });
-        prog.appendChild(btn);
-        subDiv.appendChild(prog);
+        if (!subSlots[time].noBtn) {
+          const btn = document.createElement('button');
+          btn.className = 'tt-info-btn';
+          btn.innerHTML = '▶';
+          btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(subSlots[time]); });
+          prog.appendChild(btn);
+        }
+          subDiv.appendChild(prog);
       }
 
       row.appendChild(mainDiv);
@@ -202,11 +207,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', hideTooltip);
 });
 </script>
-
-<section>
-  <h2 style="margin-top: 2rem;">在校生へ</h2>
-  <p style="font-size: 14px; color: #555; line-height: 1.8;">募集要項</p>
-</section>
 
 <footer>
   &copy; 2026 暁秀祭. All rights reserved.

@@ -28,8 +28,7 @@ nav ul a:hover { background: rgba(255,255,255,0.12); color: #fff; transform: tra
 .hero h1 { font-family: 'Noto Sans JP', sans-serif; font-size: 8rem; font-weight: 500; line-height: 1.2; margin-bottom: 1rem; color: #FFF5EB; }
 .hero .date { font-size: 2rem; color: #FFF5EB; }
 .hero-buttons { display: flex; gap: 5rem; justify-content: center; margin-top: 4rem; }
-.hero-btn { display: inline-flex; align-items: center; gap: 0.3rem; padding: 1.5rem 3rem; border: 1px solid #fff; border-radius: 8px; font-size: 17px; color: #333; background: #fff; text-decoration: none; transition: all 0.2s; }
-.hero-btn::after { content: '→'; transition: transform 0.2s; }
+.hero-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 160px; height: 160px; border-radius: 50%; border: 1px solid #fff; font-size: 18px; color: #333; background: #fff; text-decoration: none; transition: all 0.2s; text-align: center; flex-direction: column; line-height: 1.4; }
 .hero-btn:hover::after { transform: translateX(5px); }
 .hero-btn:hover { background: rgba(255,255,255,0.85); }
 
@@ -103,9 +102,11 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .footer-info { font-size: 13px; color: #555; line-height: 1.8; }
 .footer-bottom { border-top: 0.5px solid #e5e5e5; padding: 1.5rem 0; text-align: center; font-size: 12px; color: #aaa; max-width: 900px; margin: 0 auto; }
 .footer-block { text-align: left; align-items: flex-start; }
+.footer-instagram { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; color: #555; text-decoration: none; margin-top: 0.5rem; }
+.footer-instagram:hover { color: #333; }
 
-.gallery-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, auto); gap: 0.5rem; }
-.gallery-card { background: #fff; border: 1.5px solid #2e2e2e; border-radius: 0; padding: 0; cursor: pointer; transition: all 0.2s; overflow: hidden; height: 220px; display: flex; flex-direction: column; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, auto); gap: 0.5rem; }
+.gallery-card { background: #fff; border: none; border-radius: 12px; padding: 0; cursor: pointer; transition: all 0.2s; overflow: hidden; height: 220px; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 .gallery-card:hover { background: #f9f9f9; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); transform: translateY(-4px); }
 .gallery-name { font-size: 14px; font-weight: 500; margin-bottom: 0.25rem; padding: 0.75rem 1rem 0; }
 .gallery-tag { font-size: 12px; color: #999; padding: 0 1rem 1rem; }
@@ -129,7 +130,7 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .tt-program-left { right: 0; justify-content: flex-end; padding-right: 0.75rem; border-right: 3px solid #333; }
 .tt-program-right { left: 0; justify-content: flex-start; padding-left: 0.75rem; border-left: 3px solid #333; }
 
-.tt-info-btn { width: 26px; height: 26px; border-radius: 50%; background: #333; color: #fff; border: none; cursor: pointer; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.8rem; flex-shrink: 0; transition: background 0.2s; line-height: 1; padding: 0; }
+.tt-info-btn { width: 20px; height: 20px; border-radius: 50%; background: #333; color: #fff; border: none; cursor: pointer; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.8rem; flex-shrink: 0; transition: background 0.2s; line-height: 1; padding: 0; }
 .tt-info-btn:hover { background: #555; }
 
 .modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.25rem; cursor: pointer; background: rgba(255,255,255,0.8); border: none; color: #333; border-radius: 50%; width: 32px; height: 32px; }
@@ -142,6 +143,25 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .modal-info-row { display: flex; gap: 0.5rem; font-size: 14px; margin-top: 0.5rem; margin-bottom: 1rem; }
 .modal-info-label { color: #aaa; min-width: 40px; }
 .modal-info-value { color: #555; }
+.modal-box {
+  width: 90%;
+  max-width: 500px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Important: box adjusts to content */
+  max-height: 90vh;
+}
+
+.modal-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  display: block;
+}
 
 .program-card { display: flex; align-items: center; margin-top: 1.5rem; background: #fff; border: 1px solid #000; border-radius: 0; overflow: hidden; width: 100%; max-width: 600px; }
 .program-img { width: auto; max-width: 45%; height: auto; flex-shrink: 0; object-fit: cover; display: block; }
@@ -214,8 +234,8 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
   .hero .tag { font-size: 25px; }
   .hero h1 { font-size: 5rem; }
   .hero .date { font-size: 14px; }
-  .hero-buttons { flex-direction: column; align-items: center; gap: 0.75rem; }
-  .hero-btn { width: 100%; text-align: center; font-size: 14px; padding: 1rem 1.5rem; }
+  .hero-buttons { flex-direction: row; align-items: center; justify-content: center; gap: 1rem; }
+  .hero-btn { width: 150px; height: 150px; font-size: 15px; padding: 0; border-radius: 50%; flex-direction: column; }
 
   /* countdown */
   .countdown { gap: 1rem; flex-wrap: wrap; }
@@ -248,6 +268,57 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
   .schedule-item .info .sub { font-size: 13px; }
 
   .pdf-link { width: 100%; justify-content: center; font-size: 14px; }
+
+  /* Stack the image and text vertically */
+  .program-card {
+    flex-direction: column;
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+
+  /* Make image full width on top */
+  .program-img {
+    max-width: 100%;
+    width: 100%;
+    height: 180px; /* Give it a fixed height so it looks like a header */
+  }
+
+  .program-info {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  /* FIX: The grid was too wide. We change it to a flexible layout */
+  .program-row {
+    grid-template-columns: 1fr auto; /* Name takes space, time stays right */
+    gap: 4px;
+    font-size: 13px;
+  }
+  
+  /* If the bus stop name is very long, let it take its own line */
+  .bus-access {
+    grid-column: 1 / -1; /* Spans across both columns */
+    margin-top: 0.4rem;
+    font-size: 13px;
+    color: #666;
+  }
+
+  /* Reset margins for a tighter mobile look */
+  .program-label, .program-value {
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+
+  /* Shrink the huge 30px gap for the inline rows */
+  .program-row-inline {
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  
+  .program-title {
+    font-size: 15px;
+  }
 
   /* artists */
   .artists { grid-template-columns: 1fr 1fr; }
