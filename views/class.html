@@ -4,6 +4,13 @@
   <span class="logo">暁秀祭2026</span>
 </nav>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暁秀祭2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
 <body class="class-page">
 
 <div style="max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
@@ -149,6 +156,16 @@
       <div class="gallery-name">自衛隊が来る！防災展示</div>
       <div class="gallery-tag">防災研究部</div>
     </div>
+    <div class="gallery-card" onclick="openModal('club13')">
+      <img class="gallery-img" src="img/club13.png" alt="模擬店 13">
+      <div class="gallery-name">ミステリージャーニー</div>
+      <div class="gallery-tag">広報委員会</div>
+    </div>
+    <div class="gallery-card" onclick="openModal('club14')">
+      <img class="gallery-img" src="img/class1.jpg" alt="模擬店 14">
+      <div class="gallery-name">キャップで世界に貢献！</div>
+      <div class="gallery-tag">奉仕会</div>
+    </div>
   </div>
 </section>
 
@@ -184,7 +201,7 @@ const classData = {
   class8:  { name: 'VS 2B', place: '301', video: 'video/class8.mp4', tag: '2B ゲーム',   desc: 'VS嵐の神企画降臨⁉️蹴って投げて大盛り上がり！狙って当てて、ストレス発散だ！！' },
   class9:  { name: '絶対に参拝してはいけない神社', place: '生活科学棟2階', video: 'video/class9.mp4', tag: '2C 脱出',   desc: '赤い鳥居の先、戻れない参道。終わらない参道。――あなたは無事に抜け出せるか...' },
   class10: { name: 'パイレーツ・オブ・ⅡD', place: '206', video: 'video/class10.mp4', tag: '2D ゲーム', desc: '撃って遊んで撮って残す！海賊気分を味わえる３つのブースを用意しています。キャプテン目指して頑張ろう！' },
-  class11: { name: '妖精の森の巨大ジェンガ', place: '場所を入力', video: 'video/class11.mp4', tag: '2α ゲーム', desc: '可愛い妖精がお出迎え！巨大ジェンガを崩さず引き抜けるか？ハラハラの一回勝負、ぜひ挑戦してみてね！' },
+  class11: { name: '妖精の森の巨大ジェンガ', place: '109', video: 'video/class11.mp4', tag: '2α ゲーム', desc: '可愛い妖精がお出迎え！巨大ジェンガを崩さず引き抜けるか？ハラハラの一回勝負、ぜひ挑戦してみてね！' },
   class12: { name: 'ALOHANA', place: '305', video: 'video/class12.mp4', tag: '2Z カフェ', desc: 'アイスやキンキンに冷えたジュース、ドーナツも売ってます！フェイスシール体験も！南国気分味わいにきてね' },
   class17: { name: '1α', place: '308', img: 'img/class17.jpg', tag: '音楽', desc: 'ここに説明を入力してください。' },
   class18: { name: '♡イノベーティブカフェ♡', place: '201', img: 'img/class18.jpg', tag: '1Z カフェ', desc: '女子が執事の格好をし、男子がメイドの格好をするイノベーティブで多様性を重視したニューコンセプト店！！' },
@@ -203,6 +220,8 @@ const clubData = {
   club10: { name: '競技かるた 試合&体験', place: '205', tag: '文芸部かるた班', desc: '袴を着てやる模範試合、体験もできます！12時ごろからやるのでぜひきてください！ちはやふるなどのドラマの世界覗きませんか？' },
   club11: { name: 'ペンライト販売', place: '体育館前', tag: '文化祭実行委員', desc: '文化祭当日、体育館前でペンライト販売を行います。GG T・暁秀王を盛り上げるためにカラフルなペンライトを購入して体育館を彩ろう！' },
   club12: { name: '自衛隊が来る！防災展示', place: '正門付近', tag: '防災研究部', desc: '自衛隊の装備を間近に見られる迫力満点の展示で、災害時に役立つ知識や自衛隊の活動について楽しく学ぼう！' },
+  club13: { name: 'ミステリージャーニー', place: '校舎内', tag: '広報委員会', desc: 'リンクからクイズに挑戦！模擬店を全制覇して無料券を勝ち取れ！https://kohoquizrally2026.onrender.com' },
+  club14: { name: 'キャップで世界に貢献！', place: 'N/A', tag: '奉仕会', desc: 'ペットボトルキャップを回収しています。あなたの小さな行動が、途上国の子供達の医療支援に繋がります！' },
 };
 
 function openModal(id) {
