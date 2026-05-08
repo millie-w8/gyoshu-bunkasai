@@ -22,12 +22,8 @@
   <p class="tag">暁秀祭</p>
   <h1>文化の部</h1>
   <p class="date">2026/05/17</p>
-  <div class="countdown" id="countdown">
+<div class="countdown" id="countdown">
   <span class="countdown-prefix">残り</span>
-  <div class="countdown-item">
-    <span class="countdown-num" id="weeks">0</span>
-    <span class="countdown-label">週</span>
-  </div>
   <div class="countdown-item">
     <span class="countdown-num" id="days">0</span>
     <span class="countdown-label">日</span>
@@ -35,6 +31,10 @@
   <div class="countdown-item">
     <span class="countdown-num" id="hours">0</span>
     <span class="countdown-label">時間</span>
+  </div>
+  <div class="countdown-item">
+    <span class="countdown-num" id="minutes">0</span>
+    <span class="countdown-label">分</span>
   </div>
 </div>
 
@@ -49,18 +49,19 @@ function updateCountdown() {
     return;
   }
 
-  const totalHours = Math.floor(diff / (1000 * 60 * 60));
-  const weeks = Math.floor(totalHours / (7 * 24));
-  const days = Math.floor((totalHours % (7 * 24)) / 24);
-  const hours = totalHours % 24;
+  const totalMinutes = Math.floor(diff / (1000 * 60));
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
 
-  document.getElementById('weeks').textContent = weeks;
   document.getElementById('days').textContent = days;
   document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
 }
 
 updateCountdown();
-setInterval(updateCountdown, 1000 * 60);
+setInterval(updateCountdown, 1000);
+
 </script>
   <div class="hero-buttons">
     <a href="stage.html" class="hero-btn">ステージ企画</a>
