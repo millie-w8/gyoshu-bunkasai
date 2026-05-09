@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理画面 | 暁秀祭2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { background: #f5f5f5; font-family: 'Noto Sans JP', sans-serif; }
+    .admin-wrapper { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+    .admin-header { margin-bottom: 2rem; }
+    .admin-header h1 { font-size: 24px; font-weight: 500; color: #333; margin-bottom: 0.25rem; }
+    .admin-header p { font-size: 13px; color: #aaa; }
+    .admin-login { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); max-width: 360px; margin: 0 auto; }
+    .admin-login h2 { font-size: 16px; font-weight: 500; color: #333; margin-bottom: 1.5rem; text-align: center; }
+    .admin-login input { width: 100%; padding: 0.6rem 0.8rem; border: 0.5px solid #ddd; border-radius: 8px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; margin-bottom: 1rem; }
+    .admin-login button { width: 100%; padding: 0.75rem; background: #333; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; transition: background 0.2s; }
+    .admin-login button:hover { background: #555; }
+    .admin-login .error { font-size: 12px; color: #e00; text-align: center; margin-top: 0.5rem; display: none; }
+    .admin-dashboard { display: none; }
+    .admin-dashboard.visible { display: block; }
+    .admin-login-box { display: block; }
+    .admin-login-box.hidden { display: none; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .stat-card .stat-label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .stat-card .stat-num { font-size: 2.5rem; font-weight: 500; color: #333; line-height: 1; margin-bottom: 0.25rem; }
+    .stat-card .stat-sub { font-size: 12px; color: #aaa; }
+    .stat-card .stat-change { font-size: 12px; color: #4caf50; margin-top: 0.5rem; }
+    .admin-section { background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 1rem; }
+    .admin-section h3 { font-size: 15px; font-weight: 500; color: #333; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid #e5e5e5; }
+    .page-row { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 0; border-bottom: 0.5px solid #f0f0f0; font-size: 14px; }
+    .page-row:last-child { border-bottom: none; }
+    .page-name { flex: 1; color: #333; }
+    .page-bar-wrap { flex: 2; background: #f5f5f5; border-radius: 4px; height: 6px; overflow: hidden; }
+    .page-bar { height: 100%; background: #333; border-radius: 4px; transition: width 1s ease; }
+    .page-count { font-size: 13px; color: #aaa; min-width: 40px; text-align: right; }
+    .admin-logout { display: inline-block; margin-top: 1rem; font-size: 13px; color: #aaa; cursor: pointer; text-decoration: underline; background: none; border: none; font-family: 'Noto Sans JP', sans-serif; }
+    .last-updated { font-size: 12px; color: #aaa; margin-top: 1rem; text-align: right; }
+
+    @media screen and (max-width: 500px) {
+      .admin-wrapper { padding: 2rem 1rem; }
+      .stat-card .stat-num { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+  <div class="admin-header">
+    <h1>管理画面</h1>
+    <p>暁秀祭2026 アクセス状況</p>
+  </div>
+
+  <!-- Login -->
+  <div class="admin-login-box" id="loginBox">
+    <div class="admin-login">
+      <h2>🔒 ログイン</h2>
+      <input type="password" id="passwordInput" placeholder="パスワードを入力" />
+      <button onclick="checkPassword()">ログイン</button>
+      <p class="error" id="loginError">パスワードが違います</p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="admin-dashboard" id="dashboard">
+
+    <div class="dashboard-grid">
+      <div class="stat-card">
+        <div class="stat-label">総訪問者数</div>
+        <div class="stat-num" id="totalCount">0</div>
+        <div class="stat-sub">累計アクセス数</div>
+        <div class="stat-change" id="todayChange">本日: 0件</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">本日の訪問者</div>
+        <div class="stat-num" id="todayCount">0</div>
+        <div class="stat-sub">今日のアクセス数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">最終アクセス</div>
+        <div class="stat-num" style="font-size:1.2rem;" id="lastAccess">—</div>
+        <div class="stat-sub">最後に訪問した時刻</div>
+      </div>
+    </div>
+    <div class="last-updated" id="lastUpdated"></div>
+    <button class="admin-logout" onclick="logout()">ログアウト</button>
+
+  </div>
+</div>
+
+<script>
+  const PASSWORD = 'gyoshu2026';
+
+  // Page view tracking data — update these manually or connect to a real backend later
+  const data = {
+    total: parseInt(localStorage.getItem('admin_total') || '0'),
+    today: parseInt(localStorage.getItem('admin_today') || '0'),
+    lastAccess: localStorage.getItem('admin_lastAccess') || '—',
+    pages: {
+      home:   parseInt(localStorage.getItem('page_home')   || '0'),
+      stage:  parseInt(localStorage.getItem('page_stage')  || '0'),
+      class:  parseInt(localStorage.getItem('page_class')  || '0'),
+      map:    parseInt(localStorage.getItem('page_map')    || '0'),
+      access: parseInt(localStorage.getItem('page_access') || '0'),
+    }
+  };
+
+  function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    if (input === PASSWORD) {
+      document.getElementById('loginBox').classList.add('hidden');
+      document.getElementById('dashboard').classList.add('visible');
+      renderDashboard();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  function renderDashboard() {
+    document.getElementById('totalCount').textContent = data.total.toLocaleString();
+    document.getElementById('todayCount').textContent = data.today.toLocaleString();
+    document.getElementById('todayChange').textContent = `本日: ${data.today}件`;
+    document.getElementById('lastAccess').textContent = data.lastAccess;
+
+    const maxPage = Math.max(...Object.values(data.pages), 1);
+    Object.entries(data.pages).forEach(([key, val]) => {
+      document.getElementById(`count-${key}`).textContent = val;
+      document.getElementById(`bar-${key}`).style.width = `${(val / maxPage) * 100}%`;
+    });
+
+    const now = new Date();
+    document.getElementById('lastUpdated').textContent =
+      `最終更新: ${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+  }
+
+  function logout() {
+    document.getElementById('loginBox').classList.remove('hidden');
+    document.getElementById('dashboard').classList.remove('visible');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('loginError').style.display = 'none';
+  }
+
+  // Track this page visit
+  function trackVisit(page) {
+    const total = parseInt(localStorage.getItem('admin_total') || '0') + 1;
+    const today = parseInt(localStorage.getItem('admin_today') || '0') + 1;
+    const now = new Date();
+    const lastAccess = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+    const pageCount = parseInt(localStorage.getItem(`page_${page}`) || '0') + 1;
+
+    localStorage.setItem('admin_total', total);
+    localStorage.setItem('admin_today', today);
+    localStorage.setItem('admin_lastAccess', lastAccess);
+    localStorage.setItem(`page_${page}`, pageCount);
+  }
+</script>
+
+</body>
+</html>

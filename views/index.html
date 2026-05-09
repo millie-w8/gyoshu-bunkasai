@@ -63,6 +63,19 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 </script>
+
+<script>
+  localStorage.setItem('admin_total', parseInt(localStorage.getItem('admin_total') || '0') + 1);
+  localStorage.setItem('admin_lastAccess', new Date().toLocaleString('ja-JP'));
+  const today = new Date().toDateString();
+  if (localStorage.getItem('admin_today_date') !== today) {
+    localStorage.setItem('admin_today', '0');
+    localStorage.setItem('admin_today_date', today);
+  }
+  localStorage.setItem('admin_today', parseInt(localStorage.getItem('admin_today') || '0') + 1);
+</script>
+
+
   <div class="hero-buttons">
     <a href="stage.html" class="hero-btn">ステージ企画</a>
     <a href="class.html" class="hero-btn">模擬店<br>キッチンカー</a>
@@ -96,6 +109,10 @@ setInterval(updateCountdown, 1000);
     </div>
   </div>
 </section>
+
+<div class="full-width-container">
+  <img src="img/slogan.png" class="hero-img">
+</div>
 
 <section id="student">
   <h2>生徒の皆様へ</h2>
