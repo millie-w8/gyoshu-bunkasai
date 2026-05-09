@@ -58,18 +58,18 @@ const subSlots = {
 };
 
 const chorusVideos = [
-  { src: "video/chorus1.mp4", note: "3年1組" },
-  { src: "video/chorus2.mp4", note: "3年2組" },
-  { src: "video/chorus3.mp4", note: "3年3組" },
-  { src: "video/chorus4.mp4", note: "3年4組" },
-  { src: "video/chorus5.mp4", note: "2年1組" },
-  { src: "video/chorus6.mp4", note: "2年2組" },
-  { src: "video/chorus7.mp4", note: "2年3組" },
-  { src: "video/chorus8.mp4", note: "2年4組" },
-  { src: "video/chorus9.mp4", note: "1年1組" },
-  { src: "video/chorus10.mp4", note: "1年2組" },
-  { src: "video/chorus11.mp4", note: "1年3組" },
-  { src: "video/chorus12.mp4", note: "1年4組" },
+  { src: "video/chorus1.mp4",  thumb: "img/chorus1.png",  note: "3年1組" },
+  { src: "video/chorus2.mp4",  thumb: "img/chorus2.png",  note: "3年2組" },
+  { src: "video/chorus3.mp4",  thumb: "img/chorus3.png",  note: "3年3組" },
+  { src: "video/chorus4.mp4",  thumb: "img/chorus4.png",  note: "3年4組" },
+  { src: "video/chorus5.mp4",  thumb: "img/chorus5.png",  note: "2年1組" },
+  { src: "video/chorus6.mp4",  thumb: "img/chorus6.png",  note: "2年2組" },
+  { src: "video/chorus7.mp4",  thumb: "img/chorus7.png",  note: "2年3組" },
+  { src: "video/chorus8.mp4",  thumb: "img/chorus8.png",  note: "2年4組" },
+  { src: "video/chorus9.mp4",  thumb: "img/chorus9.png",  note: "1年1組" },
+  { src: "video/chorus10.mp4", thumb: "img/chorus10.png", note: "1年2組" },
+  { src: "video/chorus11.mp4", thumb: "img/chorus11.png", note: "1年3組" },
+  { src: "video/chorus12.mp4", thumb: "img/chorus12.png", note: "1年4組" },
 ];
 
 const ROW_HEIGHT = 32;
@@ -85,16 +85,46 @@ function generateTimes() {
   return times;
 }
 
-function openFullscreen(cell) {
-  const video = cell.querySelector('video');
-  video.muted = false;
-  video.play();
-  if (video.requestFullscreen) video.requestFullscreen();
-  else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
-  else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
-  video.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) { video.pause(); video.muted = true; }
+function openFullscreen(src) {
+  // Create fullscreen overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'chorusOverlay';
+  overlay.style.cssText = `
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #000; z-index: 9999999; display: flex;
+    align-items: center; justify-content: center;
+  `;
+
+  const video = document.createElement('video');
+  video.src = src;
+  video.controls = true;
+  video.autoplay = true;
+  video.playsinline = true;
+  video.style.cssText = `width: 100%; height: 100%; object-fit: contain;`;
+
+  const exitBtn = document.createElement('button');
+  exitBtn.innerHTML = '✕ 閉じる';
+  exitBtn.style.cssText = `
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: rgba(255,255,255,0.15); color: #fff;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 8px;
+    padding: 0.5rem 1.25rem; font-size: 14px; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: background 0.2s;
+    z-index: 10000000;
+  `;
+  exitBtn.addEventListener('mouseover', () => exitBtn.style.background = 'rgba(255,255,255,0.3)');
+  exitBtn.addEventListener('mouseout', () => exitBtn.style.background = 'rgba(255,255,255,0.15)');
+  exitBtn.addEventListener('click', () => {
+    video.pause();
+    document.body.removeChild(overlay);
+    document.body.style.overflow = '';
   });
+
+  overlay.appendChild(video);
+  overlay.appendChild(exitBtn);
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -120,8 +150,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (slot.chorus) {
       const cells = chorusVideos.map(v => `
         <div class="tt-chorus-item">
-          <div class="tt-chorus-cell" onclick="openFullscreen(this) "data-src="${v.src}">
-            <video src="${v.src}" muted playsinline preload="none"></video>
+          <div class="tt-chorus-cell" onclick="openFullscreen('${v.src}')">
+            <img src="${v.thumb}" alt="${v.note}" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="tt-chorus-note">${v.note}</div>
         </div>
