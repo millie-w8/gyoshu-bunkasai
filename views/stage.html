@@ -58,18 +58,18 @@ const subSlots = {
 };
 
 const chorusVideos = [
-  { src: "/video/chorus1.mp4", note: "3年1組" },
-  { src: "/video/chorus2.mp4", note: "3年2組" },
-  { src: "/video/chorus3.mp4", note: "3年3組" },
-  { src: "/video/chorus4.mp4", note: "3年4組" },
-  { src: "/video/chorus5.mp4", note: "2年1組" },
-  { src: "/video/chorus6.mp4", note: "2年2組" },
-  { src: "/video/chorus7.mp4", note: "2年3組" },
-  { src: "/video/chorus8.mp4", note: "2年4組" },
-  { src: "/video/chorus9.mp4", note: "1年1組" },
-  { src: "/video/chorus10.mp4", note: "1年2組" },
-  { src: "/video/chorus11.mp4", note: "1年3組" },
-  { src: "/video/chorus12.mp4", note: "1年4組" },
+  { src: "video/chorus1.mp4", note: "3年1組" },
+  { src: "video/chorus2.mp4", note: "3年2組" },
+  { src: "video/chorus3.mp4", note: "3年3組" },
+  { src: "video/chorus4.mp4", note: "3年4組" },
+  { src: "video/chorus5.mp4", note: "2年1組" },
+  { src: "video/chorus6.mp4", note: "2年2組" },
+  { src: "video/chorus7.mp4", note: "2年3組" },
+  { src: "video/chorus8.mp4", note: "2年4組" },
+  { src: "video/chorus9.mp4", note: "1年1組" },
+  { src: "video/chorus10.mp4", note: "1年2組" },
+  { src: "video/chorus11.mp4", note: "1年3組" },
+  { src: "video/chorus12.mp4", note: "1年4組" },
 ];
 
 const ROW_HEIGHT = 32;
@@ -119,11 +119,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (slot.chorus) {
       const cells = chorusVideos.map(v => `
-        <div style="display:flex;flex-direction:column;gap:0.25rem;">
-          <div onclick="openFullscreen(this)" style="background:#f9f9f9;border:0.5px solid #e5e5e5;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;">
-            <video src="${v.src}" muted playsinline preload="none" style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="tt-chorus-item">
+          <div class="tt-chorus-cell" onclick="openFullscreen(this) "data-src="${v.src}">
+            <video src="${v.src}" muted playsinline preload="none"></video>
           </div>
-          <div style="font-size:10px;color:#555;text-align:center;line-height:1.4;">${v.note}</div>
+          <div class="tt-chorus-note">${v.note}</div>
         </div>
       `).join('');
       html += `
@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
           <div style="font-size:14px;font-weight:500;color:#333;margin-bottom:0.5rem;padding-bottom:0.5rem;border-bottom:0.5px solid #e5e5e5;">${slot.label}</div>
           <div style="font-size:13px;color:#555;line-height:1.7;">${slot.desc}</div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.4rem;padding:0.75rem;">${cells}</div>
+        <div class="tt-chorus-grid">${cells}</div>
         <div style="font-size:11px;color:#aaa;padding:0 1rem 1rem;line-height:1.6;">※ 動画をクリックするとフルスクリーンで再生されます。</div>
       `;
     } else {
@@ -144,6 +144,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     tooltip.innerHTML = html;
+    tooltip.querySelectorAll('.tt-chorus-cell').forEach(cell => {
+      const video = cell.querySelector('video');
+      const src = cell.getAttribute('data-src');
+      if (src && !video.src) {
+        video.src = src;
+        video.load();
+      }
+    });
     tooltip.style.opacity = '1';
     tooltip.style.transform = 'translateX(-50%) translateY(0)';
     tooltip.style.pointerEvents = 'auto';
