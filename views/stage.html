@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/style.css">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暁秀祭2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<nav>
+  <span class="logo">暁秀祭2026</span>
+</nav>
+
+<div style="max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
+  <a class="back-link" href="index.html">&larr; Back to home</a>
+</div>
+
+<section id="timetable">
+  <h2>タイムテーブル</h2>
+  <div class="timetable-wrapper">
+
+    <div class="timetable-header-row">
+      <div class="timetable-header timetable-header-left">メインステージ<br><span class="timetable-sub">（体育館）</span></div>
+      <div class="timetable-center-header"></div>
+      <div class="timetable-header timetable-header-right">サブステージ<br><span class="timetable-sub">（生徒ホール・中庭）</span></div>
+    </div>
+
+    <div class="timetable-scroll">
+      <div class="timetable-body" id="timetableBody"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+const mainSlots = {
+  "8:40":  { label: "入場開始",           span: 1,  desc: "会場への入場を開始します。体育館にお集まりください。", noBtn: true},
+  "8:50":  { label: "オープニング",        span: 4,  desc: "暁秀祭のオープニングプログラム", noBtn: true },
+  "9:30":  { label: "GWO",               span: 3,  desc: "クラシック曲をお送りします。", img: "img/suibu.jpg" },
+  "10:10": { label: "中学合唱コンクール",    span: 11, desc: "年に一度の合唱祭。始業式から一ヶ月、団結力は深まっています。歌に想いをのせて、みんなを楽しませます！", chorus: true },
+  "12:00": { label: "Re:Blue",   span: 3, desc: "高1から高3の11人が出演する、再生デニム作品による特別ランウェイショーです。", video: "video/NA.mp4" },
+  "12:30": { label: "箏曲部演奏",         span: 4,  desc: "三味線と箏による演奏です。古くから伝わる日本の伝統芸能と現代音楽の交わりをお楽しみください！", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726510/soukyoku_pgumth.mp4" },
+  "13:10": { label: "GGT前半",           span: 5,  desc: "Gyoshu God Talentの前半戦" },
+  "14:00": { label: "暁秀王決勝戦", span: 4,  desc: "暁秀王決勝戦！優勝景品は誰の手に！？", noBtn: true  },
+  "14:40": { label: "暁秀王表彰式",       span: 1,  desc: "暁秀王の表彰式を行います。", noBtn: true  },
+  "14:50": { label: "GGT後半",           span: 5,  desc: "Gyoshu God Talentの後半戦" },
+  "15:40": { label: "エンディング",       span: 4,  desc: "暁秀祭文化の部エンディングセレモニー", noBtn: true  },
+};
+
+const subSlots = {
+  "12:00": { label: "暁秀王予選", span: 4, desc: "高校生部門の暁秀王予選", noBtn: true  },
+  "12:40": { label: "GWO",               span: 5, desc: "「好きすぎて滅」、「とくべちゅして」など、今流行りの曲で暁秀祭を盛り上げます！", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726502/gwo_xcjrc8.mp4" },
+  "13:30": { label: "コンサート",   span: 6, desc: "有名J-POPから海外の合唱まで。中央廊下で合唱部が歌い上げます。みなさんに感動を届けられるよう、部員一同心を込めて歌います。", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726528/concert_kqkvdu.mp4" },
+};
+
+const chorusVideos = [
+  { src: "video/chorus1.mp4",  thumb: "img/chorus1.png",  note: "3年1組" },
+  { src: "video/chorus2.mp4",  thumb: "img/chorus2.png",  note: "3年2組" },
+  { src: "video/chorus3.mp4",  thumb: "img/chorus3.png",  note: "3年3組" },
+  { src: "video/chorus4.mp4",  thumb: "img/chorus4.png",  note: "3年4組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726509/chorus5_goptu0.mp4",  thumb: "img/chorus5.png",  note: "2年1組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778729122/chorus6_zr25xi.mov",  thumb: "img/chorus6.png",  note: "2年2組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726526/chorus7_ozrpgm.mp4",  thumb: "img/chorus7.png",  note: "2年3組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778729123/chorus8_h7csja.mov",  thumb: "img/chorus8.png",  note: "2年4組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726518/chorus9_ottxsy.mp4",  thumb: "img/chorus9.png",  note: "1年1組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726543/chorus10_xjaskq.mp4", thumb: "img/chorus10.png", note: "1年2組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726534/chorus11_lc7fx1.mp4", thumb: "img/chorus11.png", note: "1年3組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726546/chorus12_tuotaq.mp4", thumb: "img/chorus12.png", note: "1年4組" },
+];
+
+const ROW_HEIGHT = 32;
+
+function generateTimes() {
+  const times = [];
+  let h = 8, m = 40;
+  while (h < 16 || (h === 16 && m <= 10)) {
+    times.push(`${h}:${m.toString().padStart(2, '0')}`);
+    m += 10;
+    if (m >= 60) { m -= 60; h++; }
+  }
+  return times;
+}
+
+function openFullscreen(src) {
+  const overlay = document.createElement('div');
+  overlay.id = 'chorusOverlay';
+  overlay.style.cssText = `
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #000; z-index: 9999999; display: flex;
+    align-items: center; justify-content: center; flex-direction: column;
+  `;
+
+  const video = document.createElement('video');
+  video.src = src;
+  video.controls = true;
+  video.autoplay = true;
+  video.playsinline = true;
+  video.style.cssText = `width: 90%; max-width: 800px; height: auto; object-fit: contain;`;
+
+  const exitBtn = document.createElement('button');
+  exitBtn.innerHTML = '✕ 閉じる';
+  exitBtn.style.cssText = `
+    margin-top: 1rem; background: rgba(255,255,255,0.15); color: #fff;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 8px;
+    padding: 0.5rem 1.25rem; font-size: 14px; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif; transition: background 0.2s;
+  `;
+  exitBtn.addEventListener('mouseover', () => exitBtn.style.background = 'rgba(255,255,255,0.3)');
+  exitBtn.addEventListener('mouseout', () => exitBtn.style.background = 'rgba(255,255,255,0.15)');
+  exitBtn.addEventListener('click', () => {
+    video.pause();
+    document.body.removeChild(overlay);
+    document.body.style.overflow = '';
+  });
+
+  overlay.appendChild(video);
+  overlay.appendChild(exitBtn);
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+
+  // Create global tooltip
+  const tooltip = document.createElement('div');
+  tooltip.id = 'globalTooltip';
+  tooltip.className = 'global-tooltip';
+  document.body.appendChild(tooltip);
+
+  function showTooltip(slot) {
+    let html = `
+      <div style="clear:both;"></div>
+    `;
+    if (slot.img) {
+      html += `<img src="${slot.img}" class="tooltip-img">`;
+    }
+    if (slot.video) {
+      html += `<div class="tooltip-video-wrapper"><video src="${slot.video}" controls playsinline preload="none" class="tooltip-video"></video></div>`;
+    }
+    if (slot.chorus) {
+      const cells = chorusVideos.map(v => `
+        <div class="tt-chorus-item">
+          <div class="tt-chorus-cell" onclick="openFullscreen('${v.src}')">
+            <img src="${v.thumb}" alt="${v.note}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="tt-chorus-note">${v.note}</div>
+        </div>
+      `).join('');
+      html += `
+        <div class="tooltip-header">
+          <div class="tooltip-title">${slot.label}</div>
+          <div class="tooltip-desc">${slot.desc}</div>
+        </div>
+        <div class="tt-chorus-grid">${cells}</div>
+        <div class="tooltip-footnote">※ 動画をクリックするとフルスクリーンで再生されます。</div>
+      `;
+    } else {
+      html += `
+        <div class="tooltip-body">
+          <div class="tooltip-title">${slot.label}</div>
+          <div class="tooltip-desc">${slot.desc}</div>
+        </div>
+      `;
+    }
+
+    tooltip.innerHTML = html;
+    tooltip.querySelectorAll('.tt-chorus-cell').forEach(cell => {
+      const video = cell.querySelector('video');
+      const src = cell.getAttribute('data-src');
+      if (src && !video.src) {
+        video.src = src;
+        video.load();
+      }
+    });
+    tooltip.classList.add('visible');
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove('visible');
+  }
+
+  function buildTimetable() {
+    const times = generateTimes();
+    const body = document.getElementById('timetableBody');
+
+    times.forEach(time => {
+      const row = document.createElement('div');
+      row.className = 'tt-row';
+
+      const mainDiv = document.createElement('div');
+      mainDiv.className = 'tt-main';
+
+      const centerDiv = document.createElement('div');
+      centerDiv.className = 'tt-center';
+      centerDiv.innerHTML = `<div class="tt-time">${time}</div><div class="tt-line"></div>`;
+
+      const subDiv = document.createElement('div');
+      subDiv.className = 'tt-sub';
+
+      if (mainSlots[time]) {
+        const prog = document.createElement('div');
+        prog.className = 'tt-program tt-program-left';
+        prog.style.height = (mainSlots[time].span * ROW_HEIGHT) + 'px';
+        prog.textContent = mainSlots[time].label;
+        if (!mainSlots[time].noBtn) {
+          const btn = document.createElement('button');
+          btn.className = 'tt-info-btn';
+          btn.innerHTML = '詳細 ▶';
+          btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(mainSlots[time]); });
+          prog.appendChild(btn);
+        }
+        mainDiv.appendChild(prog);
+      }
+
+      if (subSlots[time]) {
+        const prog = document.createElement('div');
+        prog.className = 'tt-program tt-program-right';
+        prog.style.height = (subSlots[time].span * ROW_HEIGHT) + 'px';
+        prog.textContent = subSlots[time].label;
+        if (!subSlots[time].noBtn) {
+          const btn = document.createElement('button');
+          btn.className = 'tt-info-btn';
+          btn.innerHTML = '詳細 ▶';
+          btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(subSlots[time]); });
+          prog.appendChild(btn);
+        }
+          subDiv.appendChild(prog);
+      }
+
+      row.appendChild(mainDiv);
+      row.appendChild(centerDiv);
+      row.appendChild(subDiv);
+      body.appendChild(row);
+    });
+  }
+
+  buildTimetable();
+  document.addEventListener('click', hideTooltip);
+});
+</script>
+
+<footer>
+  &copy; 2026 暁秀祭. All rights reserved.
+</footer>
+<div id="globalTooltip" class="global-tooltip"></div>
+</body>
+</html>

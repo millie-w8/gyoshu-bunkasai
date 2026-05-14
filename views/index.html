@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>暁秀祭2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<nav>
+  <span class="logo">暁秀祭2026</span>
+  <ul>
+    <li><a href="#about">スローガン</a></li>
+    <li><a href="#program">プログラム</a></li>
+    <li><a href="#student">生徒の皆様へ</a></li>
+    <li><a href="#notice">外部からお越しの皆様へ</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="tag">暁秀祭</p>
+  <h1>文化の部</h1>
+  <p class="date">2026/05/17</p>
+<div class="countdown" id="countdown">
+  <span class="countdown-prefix">残り</span>
+  <div class="countdown-item">
+    <span class="countdown-num" id="days">0</span>
+    <span class="countdown-label">日</span>
+  </div>
+  <div class="countdown-item">
+    <span class="countdown-num" id="hours">0</span>
+    <span class="countdown-label">時間</span>
+  </div>
+  <div class="countdown-item">
+    <span class="countdown-num" id="minutes">0</span>
+    <span class="countdown-label">分</span>
+  </div>
+</div>
+
+<script>
+function updateCountdown() {
+  const festival = new Date('2026-05-17T00:00:00');
+  const now = new Date();
+  const diff = festival - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<p style="color:#fff;">本日開催！</p>';
+    return;
+  }
+
+  const totalMinutes = Math.floor(diff / (1000 * 60));
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
+
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+</script>
+
+<script>
+  localStorage.setItem('admin_total', parseInt(localStorage.getItem('admin_total') || '0') + 1);
+  localStorage.setItem('admin_lastAccess', new Date().toLocaleString('ja-JP'));
+  const today = new Date().toDateString();
+  if (localStorage.getItem('admin_today_date') !== today) {
+    localStorage.setItem('admin_today', '0');
+    localStorage.setItem('admin_today_date', today);
+  }
+  localStorage.setItem('admin_today', parseInt(localStorage.getItem('admin_today') || '0') + 1);
+</script>
+
+
+  <div class="hero-buttons">
+    <a href="stage.html" class="hero-btn">ステージ企画</a>
+    <a href="class.html" class="hero-btn">模擬店<br>キッチンカー</a>
+    <a href="map.html" class="hero-btn">フロアマップ</a>
+  </div>
+</div>
+
+<section id="about" class="about">
+  <h2 style="margin-top: 3.5rem;">暁に咲け、我らのはまゆう</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p style="line-height: 1.8; font-size: 15px; margin-top: 2rem; text-indent: 1.5em;">
+        夏に咲く「はまゆう」は沼津の花であり、真っ白な花びらを
+        持つ華やかで、清らかな花です。その凛とした姿は、一人ひとりが
+        輝く私たち暁秀生の姿と重なります。
+      </p>
+      <p style="line-height: 1.8; font-size: 15px; text-indent: 1.5em;">
+        また、「暁」は夜が 明ける前の、まだ何色にも染まっていない
+        空の色を表します。真っ白のはまゆうと暁の色が重なったとき、
+        そこには新しい暁秀の魅力が生まれます。
+      </p>
+      <p style="line-height: 1.8; font-size: 15px; text-indent: 1.5em;">
+        文化祭本番に向けて努力する形はそれぞれ違っても、最後には「暁秀祭を楽しもう」
+        という一つの思いでつながる。その団結と純粋な気持ちを、
+        このスローガンに込めました。(一部編集)
+      </p>
+      <p style="text-align: right; margin-top: 3rem; font-size: smaller; font-style: italic;">2-Z 杉原希海（すぎはらのぞみ）</p>
+    </div>
+    <div class="about-image">
+      <img src="img/hamayu.png">
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <h2>プログラム</h2>
+  <div class="pdf-container">
+    <a href="img/floormap.pdf" target="_blank" class="pdf-link">
+      <span class="pdf-icon">PDF</span>
+      <span class="pdf-text">パンフレットをチェック</span>
+    </a>
+  </div>
+</section>
+
+<section id="student">
+  <h2>生徒の皆様へ</h2>
+  <p>携帯使用上の注意</p>
+</section>
+
+<section id="notice">
+  <h2>外部からお越しの皆様へ</h2>
+  <p>注意事項</p>
+  <ol class="notice-description">
+    <li>当日、駐車場のご利用は駐車券をお持ちの方のみとなります。<br>
+    駐車券をお持ちでない方は、公共交通機関または臨時バスをご利用ください。<br></li>
+    <li>場合によって身分証のご提示をお願いすることがあります。<br>
+    ご理解とご協力をお願いいたします。<br></li>
+    <li>各模擬店は現金のみのお支払いとなります。当日は小銭のご用意をお願いします。</li>
+  </ol>
+  
+  <h2 style="margin-top: 7rem;">アクセス</h2>
+  <div class="info-grid">
+    <div class="info-block">
+      <div class="label">場所</div>
+      <div class="value">加藤学園暁秀中学校・高等学校</div>
+    </div>
+    <div class="info-block">
+      <div class="label">日にち</div>
+      <div class="value">2026/05/17</div>
+    </div>
+    <div class="info-block">
+      <div class="label">開始時間</div>
+      <div class="value">08:50</div>
+    </div>
+  </div>
+  <iframe
+    src="https://maps.google.com/maps?q=Katoh+Gakuen+Gyoshu+Junior+Senior+High+School&z=17&output=embed"
+    width="100%"
+    height="400"
+    style="border: none; border-radius: 12px; display: block; margin-top: 1.5rem;"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+  <div class="bus-note" style="margin-top: 2rem;">
+    <p>※ 当日駐車場のご用意はありません。下記のバスをご利用ください。</p>
+  </div>
+
+  <div class="schedule-container">
+    <h2 style="margin-top: 5rem; margin-bottom: 3rem;">バス時刻表</h2>
+
+    <div class="bus-group">
+      <h3 class="bus-heading">行き</h3>
+      <div class="table-wrapper">
+        <table class="bus-table">
+          <thead>
+            <tr>
+              <th>時刻</th>
+              <th>発車場所</th>
+              <th>種類</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>7:15</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>7:30</td><td>沼津駅南口</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>7:40</td><td>沼津駅南口 (学園通り経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>7:50</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>8:10</td><td>沼津駅北口</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>9:20</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>10:30</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bus-group">
+      <h3 class="bus-heading">帰り</h3>
+      <div class="table-wrapper">
+        <table class="bus-table">
+          <thead>
+            <tr>
+              <th>時刻</th>
+              <th>降車場所</th>
+              <th>種類</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>14:21</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>15:21</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>16:20</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>16:21</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>16:25</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>16:30</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>16:40</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>17:20</td><td>沼津駅南口 (北口経由)</td><td class="type-school">スクールバス</td></tr>
+            <tr><td>17:21</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+            <tr><td>18:21</td><td>沼津駅南口</td><td class="type-local">路線バス</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <div class="bus-note" style="margin-top: 3rem;">
+    <p>※ バスの時刻は変更になる場合があります。最新の情報を随時ご確認ください。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-block">
+      <div class="footer-logo">暁秀祭2026</div>
+      <p class="footer-desc">加藤学園暁秀高等学校<br>文化祭実行委員会</p>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">Follow us</div>
+      <a href="https://www.instagram.com/gyoshusai_official?igsh=em1peW4yd25wZmtt" target="_blank" class="footer-instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        @gyoshusai_official
+        </a>
+    </div>
+    <div class="footer-block">
+      <div class="footer-heading">企画情報</div>
+      <ul class="footer-links">
+        <li><a href="stage.html">ステージ企画と演奏</a></li>
+        <li><a href="class.html">模擬店・キッチンカー情報</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 暁秀祭実行委員会. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
