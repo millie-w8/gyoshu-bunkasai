@@ -21,7 +21,7 @@
   <h2>高校生模擬店</h2>
   <div class="gallery-grid">
     <div class="gallery-card" onclick="openModal('class1')">
-      <img class="gallery-img" src="img/sampleshop.png" alt="3A">
+      <img class="gallery-img" src="img/class1.png" alt="3A">
       <div class="gallery-name">イホリーポッターと賢者の教室</div>
       <div class="gallery-tag">3A 謎解き</div>
     </div>
@@ -166,6 +166,11 @@
       <div class="gallery-name">キャップで世界に貢献！</div>
       <div class="gallery-tag">奉仕会</div>
     </div>
+    <div class="gallery-card" onclick="openModal('club15')">
+      <img class="gallery-img" src="img/club15.png" alt="模擬店 15">
+      <div class="gallery-name">国際交流</div>
+      <div class="gallery-tag">国際交流</div>
+    </div>
   </div>
 </section>
 
@@ -220,18 +225,18 @@
 
 <script>
 const classData = {
-  class1:  { name: 'イホリーポッターと賢者の教室', place: '304', video: 'video/class1.mp4', tag: '3A 謎解き',   desc: 'ホグワーツ暁秀魔法魔術学校へようこそ。クィディッチや謎解きに挑戦していただき、4つの寮に組み分け！' },
-  class2:  { name: "Miyachi's Sweet Trap", place: '303', video: 'video/class2.mp4', tag: '3B 喫茶店', desc: 'アメリカンダイナー風の喫茶店です！アメカジな店内で4種類の洋菓子と缶ジュースを楽しめます。' },
+  class1:  { name: 'イホリーポッターと賢者の教室', place: '304', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778738153/class1_wtj0g7.mp4', tag: '3A 謎解き',   desc: 'ホグワーツ暁秀魔法魔術学校へようこそ。クィディッチや謎解きに挑戦していただき、4つの寮に組み分け！' },
+  class2:  { name: "Miyachi's Sweet Trap", place: '303', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778738151/class2_vhcbbs.mov', tag: '3B 喫茶店', desc: 'アメリカンダイナー風の喫茶店です！アメカジな店内で4種類の洋菓子と缶ジュースを楽しめます。' },
   class3:  { name: '音を立てるな！We are silent guy！', place: '社会科教室', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778726516/class3_yuvds6.mp4', tag: '3C 脱出ゲーム',   desc: '音を立てたら即失格！微量の音でも許されない。そんな中、3つのエリアをクリアして景品を取れるのか。' },
-  class4:  { name: '運勢と的を射抜け！', place: '204', video: 'video/class4.mp4', tag: '3D 占い',   desc: '手相で恋愛運をズバリ診断！鑑定結果をもとに射的で運命の景品を狙い撃て。あなたの恋と的を射抜こう！。' },
-  class5:  { name: '謎解きはタイムスリップのあとで', place: '2階 特別教室1・2', video: 'video/class5.mp4', tag: '3α 謎解き',     desc: '興味本位でたどり着いた家、ドアを開くと突然タイムスリップ。20年前の捜査に携わり未解決事件を解こう！' },
+  class4:  { name: '運勢と的を射抜け！', place: '204', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778738161/class4_tgftbc.mp4', tag: '3D 占い',   desc: '手相で恋愛運をズバリ診断！鑑定結果をもとに射的で運命の景品を狙い撃て。あなたの恋と的を射抜こう！。' },
+  class5:  { name: '謎解きはタイムスリップのあとで', place: '2階 特別教室1・2', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778738151/class5_dfh6l2.mp4', tag: '3α 謎解き',     desc: '興味本位でたどり着いた家、ドアを開くと突然タイムスリップ。20年前の捜査に携わり未解決事件を解こう！' },
   class6:  { name: 'Area3Z', place: '110/111', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778726545/class6_whws1o.mp4', tag: '3Z 射的', desc: '【警告】Area 3Z内に、侵入者発見！ターゲットを排除し、エリアから脱出せよ！' },
-  class7:  { name: '関係ないっしょかけるっしょ', place: '302', video: 'video/class7.mp4', tag: '2A ゲーム',   desc: '手持ちポイントをどれだけ増やせるかな？先生達のかけっこ&ミニゲームで勝ちまくれ！ゲームマスターが君を待つ！' },
-  class8:  { name: 'VS 2B', place: '301', video: 'video/class8.mp4', tag: '2B ゲーム',   desc: 'VS嵐の神企画降臨⁉️蹴って投げて大盛り上がり！狙って当てて、ストレス発散だ！！' },
-  class9:  { name: '絶対に参拝してはいけない神社', place: '生活科学棟2階', video: 'video/class9.mp4', tag: '2C 脱出',   desc: '赤い鳥居の先、戻れない参道。終わらない参道。――あなたは無事に抜け出せるか...' },
-  class10: { name: 'パイレーツ・オブ・ⅡD', place: '206', video: 'video/class10.mp4', tag: '2D ゲーム', desc: '撃って遊んで撮って残す！海賊気分を味わえる３つのブースを用意しています。キャプテン目指して頑張ろう！' },
+  class7:  { name: '関係ないっしょかけるっしょ', place: '302', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778737903/class7_nectkl.mp4', tag: '2A ゲーム',   desc: '手持ちポイントをどれだけ増やせるかな？先生達のかけっこ&ミニゲームで勝ちまくれ！ゲームマスターが君を待つ！' },
+  class8:  { name: 'VS 2B', place: '301', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778737911/class8_rqbiob.mov', tag: '2B ゲーム',   desc: 'VS嵐の神企画降臨⁉️蹴って投げて大盛り上がり！狙って当てて、ストレス発散だ！！' },
+  class9:  { name: '絶対に参拝してはいけない神社', place: '生活科学棟2階', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778737919/class9_aao7dd.mov', tag: '2C 脱出',   desc: '赤い鳥居の先、戻れない参道。終わらない参道。――あなたは無事に抜け出せるか...' },
+  class10: { name: 'パイレーツ・オブ・ⅡD', place: '206', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778737914/class10_umgtgw.mp4', tag: '2D ゲーム', desc: '撃って遊んで撮って残す！海賊気分を味わえる３つのブースを用意しています。キャプテン目指して頑張ろう！' },
   class11: { name: '妖精の森の巨大ジェンガ', place: '109', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778726540/class11_ph0br2.mp4', tag: '2α ゲーム', desc: '可愛い妖精がお出迎え！巨大ジェンガを崩さず引き抜けるか？ハラハラの一回勝負、ぜひ挑戦してみてね！' },
-  class12: { name: 'ALOHANA', place: '305', video: 'video/class12.mp4', tag: '2Z カフェ', desc: 'アイスやキンキンに冷えたジュース、ドーナツも売ってます！フェイスシール体験も！南国気分味わいにきてね' },
+  class12: { name: 'ALOHANA', place: '305', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778737917/class12_vaqoqu.mp4', tag: '2Z カフェ', desc: 'アイスやキンキンに冷えたジュース、ドーナツも売ってます！フェイスシール体験も！南国気分味わいにきてね' },
   class17: { name: 'ウマ息子爆裂レーース！2026', place: '308', video: 'video/class17.mp4', tag: '1α ゲーム', desc: 'ミニゲームで馬のステータスを獲得　カスタマイズした馬でレールバトル　ウマ息子クールダービー' },
   class18: { name: '♡イノベーティブカフェ♡', place: '201', video: 'video/class18.mp4', tag: '1Z カフェ', desc: '女子が執事の格好をし、男子がメイドの格好をするイノベーティブで多様性を重視したニューコンセプト店！！' },
 };
@@ -251,6 +256,7 @@ const clubData = {
   club12: { name: '自衛隊が来る！防災展示', place: '正門付近', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778727423/club12_xoqxrt.mp4', tag: '防災研究部', desc: '自衛隊の装備を間近に見られる迫力満点の展示で、災害時に役立つ知識や自衛隊の活動について楽しく学ぼう！' },
   club13: { name: 'ミステリージャーニー', place: '校舎内', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778706213/club13_ufpocl.mp4', tag: '広報委員会', desc: 'リンクからクイズに挑戦！模擬店を全制覇して無料券を勝ち取れ！https://kohoquizrally2026.onrender.com' },
   club14: { name: 'キャップで世界に貢献！', place: 'ゴミ箱設置場所', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778726503/club14_cujcat.mp4', tag: '奉仕会', desc: 'ペットボトルキャップを回収しています。あなたの小さな行動が、途上国の子供達の医療支援に繋がります！' },
+  club15: { name: '国際交流', place: '208', video: 'https://res.cloudinary.com/dniymrq57/video/upload/v1778747366/club15_v6dp34.mov', tag: '国際交流', desc: 'セブとオーストラリア留学の体験を、ポスターとお土産展示で紹介します！' },
 };
 
 const carData = {
