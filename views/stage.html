@@ -41,10 +41,10 @@ const mainSlots = {
   "10:10": { label: "中学合唱コンクール",    span: 11, desc: "年に一度の合唱祭。始業式から一ヶ月、団結力は深まっています。歌に想いをのせて、みんなを楽しませます！", chorus: true },
   "12:00": { label: "箏曲部演奏",         span: 4,  desc: "三味線と箏による演奏です。古くから伝わる日本の伝統芸能と現代音楽の交わりをお楽しみください！", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726510/soukyoku_pgumth.mp4" },
   "12:40": { label: "Re:Blue",   span: 3, desc: "高1から高3の11人が出演する、再生デニム作品による特別ランウェイショーです。", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778748075/reblue_duagpl.mp4" },
-  "13:10": { label: "GGT前半",           span: 5,  desc: "Gyoshu God Talentの前半戦" },
+  "13:10": { label: "GGT前半",           span: 5,  desc: "Gyoshu God Talentの前半戦！<br>プログラムと出演者は下記に記載してあります。" },
   "14:00": { label: "暁秀王決勝戦", span: 4,  desc: "暁秀王決勝戦！優勝景品は誰の手に！？", noBtn: true  },
   "14:40": { label: "暁秀王表彰式",       span: 1,  desc: "暁秀王の表彰式を行います。", noBtn: true  },
-  "14:50": { label: "GGT後半",           span: 6,  desc: "Gyoshu God Talentの後半戦" },
+  "14:50": { label: "GGT後半",           span: 6,  desc: "Gyoshu God Talentの後半戦！<br>プログラムと出演者は下記に記載してあります。" },
   "15:40": { label: "エンディング",       span: 3,  desc: "暁秀祭文化の部エンディングセレモニー", noBtn: true  },
 };
 
@@ -296,8 +296,208 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<section>
+<section id="performers">
   <h2>出演者情報</h2>
+
+  <!-- 前半 -->
+  <div class="bus-group">
+    <div class="bus-heading">前半</div>
+    <div class="table-wrapper">
+      <table class="bus-table">
+        <thead>
+          <tr>
+            <th>番号</th>
+            <th>団体名</th>
+            <th>メンバー</th>
+            <th>ジャンル</th>
+            <th>曲</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>AKRS</td>
+            <td>神田桜 / 竹内凜 / 吉川喜子 / 宮川明浬</td>
+            <td>ダンス</td>
+            <td>① LILY, JIWOO & KYUJINの Ridin′ ② デミ・ロヴァートのsorry not sorry Remix ③ MEOVVのMEOW Remix ④ Doja cat の boss bitch ⑤ XGの Is this love</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>加藤紗和</td>
+            <td>加藤紗和</td>
+            <td>カラオケ</td>
+            <td>HANA — Bluejeans</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>大矢晃己</td>
+            <td>大矢晃己</td>
+            <td>カラオケ</td>
+            <td>僕のこと — Mrs.GREEN APPLE</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>花村和来</td>
+            <td>花村和来</td>
+            <td>カラオケ</td>
+            <td>ANTENNA — Mrs. Green Apple</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>杉山遼太</td>
+            <td>杉山遼太</td>
+            <td>カラオケ</td>
+            <td>阿修羅ちゃん — Ado</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Nocturne</td>
+            <td>杉山桜子 / 三輪明凛</td>
+            <td>カラオケ</td>
+            <td>点描の唄 — Mrs. Green Apple feat. 井上苑子</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>ななゆきだるま</td>
+            <td>西田有希 / 長田七海</td>
+            <td>連弾</td>
+            <td>ライラック — Mrs.GREEN APPLE</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Simple is best</td>
+            <td>高橋暖士 / 佐藤伸一 / 杉山尚輝</td>
+            <td>弾き語り</td>
+            <td>マリーゴールド — あいみょん</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 後半 -->
+  <div class="bus-group">
+    <div class="bus-heading">後半</div>
+    <div class="table-wrapper">
+      <table class="bus-table">
+        <thead>
+          <tr>
+            <th>番号</th>
+            <th>団体名</th>
+            <th>メンバー</th>
+            <th>ジャンル</th>
+            <th>曲</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>BLUE NOVA</td>
+            <td>竹内凜 / 井手花 / 勝間田結夢</td>
+            <td>ダンス</td>
+            <td>① Jump (remix) — BLACKPINK ② Rude boy (remix) — Rihanna ③ As if it's your last — BLACKPINK</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>SA Crew</td>
+            <td>髙木彩賀 / 柿島幸来</td>
+            <td>ダンス</td>
+            <td>あなた / 宇多田ヒカル — WOKE UP / XG — Gnarly / KATSEYE</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>南綾音</td>
+            <td>南綾音</td>
+            <td>ピアノ演奏</td>
+            <td>かわいいだけじゃだめですか？ / 好きすぎて滅! / IRIS OUT</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>REDSTARS</td>
+            <td>井上陽生 / 善田そうし / 青木はるか / 菅井貴弘</td>
+            <td>バンド</td>
+            <td>空も飛べるはず — スピッツ</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>狂人集会</td>
+            <td>岩村慎之介 / 遠藤あさひ / 安部菜未</td>
+            <td>バンド</td>
+            <td>ロキ — みきとP</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Escapeee</td>
+            <td>真瀬直史 / 田中梨央 / 渡辺優月 / 安田恵 / 工藤瑞生</td>
+            <td>バンド</td>
+            <td>阿修羅ちゃん — Ado</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>バンド愛まみこ</td>
+            <td>渡邉さくら / 十河楓 / 長澤貴彩 / 小山実春 / 河北和奏</td>
+            <td>バンド</td>
+            <td>前前前世 (movie ver.) — RADWIMPS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="catalog-grid" id="catalogGrid">
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts1_j6bjga.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts1_j6bjga.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">バンド愛まみこ</div>
+    </div>
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827592/shorts2_jmvd6q.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827592/shorts2_jmvd6q.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">加藤紗和</div>
+    </div>
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827596/shorts3_nl4gom.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827596/shorts3_nl4gom.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">Nocturne</div>
+    </div>
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts4_qk0ndm.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts4_qk0ndm.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">Simple is best</div>
+    </div>
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mov')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mov" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">BLUE NOVA</div>
+    </div>
+
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778850370/shorts6_szgd8p.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778850370/shorts6_szgd8p.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <div class="catalog-caption">AKRS</div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+// Play videos when visible
+const catalogObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const video = entry.target.querySelector('video');
+    if (!video) return;
+    if (entry.isIntersecting) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('.catalog-item').forEach(item => catalogObserver.observe(item));
+</script>
+
+<section>
+  <h2>暁秀王出演者情報</h2>
 
 </section>
 
