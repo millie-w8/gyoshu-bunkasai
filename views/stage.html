@@ -28,9 +28,7 @@
       <div class="timetable-header timetable-header-right">サブステージ<br><span class="timetable-sub">（生徒ホール・中庭）</span></div>
     </div>
 
-    <div class="timetable-scroll">
-      <div class="timetable-body" id="timetableBody"></div>
-    </div>
+    <div class="timetable-body" id="timetableBody"></div>
 
   </div>
 </section>
@@ -41,13 +39,13 @@ const mainSlots = {
   "8:50":  { label: "オープニング",        span: 4,  desc: "暁秀祭のオープニングプログラム", noBtn: true },
   "9:30":  { label: "GWO",               span: 3,  desc: "クラシック曲をお送りします。", img: "img/suibu.jpg" },
   "10:10": { label: "中学合唱コンクール",    span: 11, desc: "年に一度の合唱祭。始業式から一ヶ月、団結力は深まっています。歌に想いをのせて、みんなを楽しませます！", chorus: true },
-  "12:00": { label: "Re:Blue",   span: 3, desc: "高1から高3の11人が出演する、再生デニム作品による特別ランウェイショーです。", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778748075/reblue_duagpl.mp4" },
-  "12:30": { label: "箏曲部演奏",         span: 4,  desc: "三味線と箏による演奏です。古くから伝わる日本の伝統芸能と現代音楽の交わりをお楽しみください！", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726510/soukyoku_pgumth.mp4" },
+  "12:00": { label: "箏曲部演奏",         span: 4,  desc: "三味線と箏による演奏です。古くから伝わる日本の伝統芸能と現代音楽の交わりをお楽しみください！", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778726510/soukyoku_pgumth.mp4" },
+  "12:40": { label: "Re:Blue",   span: 3, desc: "高1から高3の11人が出演する、再生デニム作品による特別ランウェイショーです。", video: "https://res.cloudinary.com/dniymrq57/video/upload/v1778748075/reblue_duagpl.mp4" },
   "13:10": { label: "GGT前半",           span: 5,  desc: "Gyoshu God Talentの前半戦" },
   "14:00": { label: "暁秀王決勝戦", span: 4,  desc: "暁秀王決勝戦！優勝景品は誰の手に！？", noBtn: true  },
   "14:40": { label: "暁秀王表彰式",       span: 1,  desc: "暁秀王の表彰式を行います。", noBtn: true  },
-  "14:50": { label: "GGT後半",           span: 5,  desc: "Gyoshu God Talentの後半戦" },
-  "15:40": { label: "エンディング",       span: 4,  desc: "暁秀祭文化の部エンディングセレモニー", noBtn: true  },
+  "14:50": { label: "GGT後半",           span: 6,  desc: "Gyoshu God Talentの後半戦" },
+  "15:40": { label: "エンディング",       span: 3,  desc: "暁秀祭文化の部エンディングセレモニー", noBtn: true  },
 };
 
 const subSlots = {
@@ -57,7 +55,7 @@ const subSlots = {
 };
 
 const chorusVideos = [
-  { src: "video/chorus1.mp4",  thumb: "img/chorus1.png",  note: "3年1組" },
+  { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778755808/chorus1_iewn0s.mov",  thumb: "img/chorus1.png",  note: "3年1組" },
   { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778732391/chorus2_ry41nt.mov",  thumb: "img/chorus2.png",  note: "3年2組" },
   { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778732392/chorus3_wivupe.mov",  thumb: "img/chorus3.png",  note: "3年3組" },
   { src: "https://res.cloudinary.com/dniymrq57/video/upload/v1778732387/chorus4_mqouhv.mov",  thumb: "img/chorus4.png",  note: "3年4組" },
@@ -98,7 +96,26 @@ function openFullscreen(src) {
   video.controls = true;
   video.autoplay = true;
   video.playsinline = true;
-  video.style.cssText = `width: 90%; max-width: 800px; height: auto; object-fit: contain;`;
+  video.style.cssText = `
+    max-width: 100vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  `;
+
+  video.addEventListener('loadedmetadata', () => {
+    const isVertical = video.videoHeight > video.videoWidth;
+    if (isVertical) {
+      video.style.width = 'auto';
+      video.style.height = '90vh';
+      video.style.maxWidth = '100vw';
+    } else {
+      video.style.width = '90vw';
+      video.style.height = 'auto';
+      video.style.maxHeight = '90vh';
+    }
+  });
 
   const exitBtn = document.createElement('button');
   exitBtn.innerHTML = '✕ 閉じる';
@@ -189,6 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
     times.forEach(time => {
       const row = document.createElement('div');
       row.className = 'tt-row';
+      row.dataset.time = time;
 
       const mainDiv = document.createElement('div');
       mainDiv.className = 'tt-main';
@@ -227,7 +245,7 @@ window.addEventListener('DOMContentLoaded', () => {
           btn.addEventListener('click', (e) => { e.stopPropagation(); showTooltip(subSlots[time]); });
           prog.appendChild(btn);
         }
-          subDiv.appendChild(prog);
+        subDiv.appendChild(prog);
       }
 
       row.appendChild(mainDiv);
@@ -237,10 +255,51 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function updateFocus() {
+    const windowCenter = window.scrollY + window.innerHeight / 2;
+    const rows = document.querySelectorAll('.tt-row');
+
+    rows.forEach(row => {
+      const rect = row.getBoundingClientRect();
+      const rowCenter = window.scrollY + rect.top + rect.height / 2;
+      const distance = Math.abs(windowCenter - rowCenter);
+      const maxDist = window.innerHeight / 2;
+      const ratio = Math.max(0, 1 - distance / maxDist);
+
+      const fontSize = 11 + ratio * 6;
+      const opacity = 0.25 + ratio * 0.75;
+      const fontWeight = ratio > 0.6 ? '600' : '400';
+
+      const programs = row.querySelectorAll('.tt-program');
+      const time = row.querySelector('.tt-time');
+
+      programs.forEach(prog => {
+        prog.style.fontSize = fontSize + 'px';
+        prog.style.opacity = opacity;
+        prog.style.fontWeight = fontWeight;
+      });
+
+      if (time) {
+        time.style.fontSize = (9 + ratio * 5) + 'px';
+        time.style.opacity = opacity;
+        time.style.fontWeight = fontWeight;
+      }
+    });
+  }
+
   buildTimetable();
+
+  updateFocus();
+  window.addEventListener('scroll', updateFocus);
+
   document.addEventListener('click', hideTooltip);
 });
 </script>
+
+<section>
+  <h2>出演者情報</h2>
+
+</section>
 
 <footer>
   &copy; 2026 暁秀祭. All rights reserved.

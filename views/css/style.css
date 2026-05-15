@@ -13,7 +13,25 @@ a:link { color: inherit; }
 nav { display: flex; align-items: center; padding: 1.25rem 2rem 0.6rem; position: absolute; top: 0; left: 0; right: 0; z-index: 10; background: transparent; }
 nav .logo { font-size: 15px; font-weight: 500; color: #fff; }
 nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0 auto; padding: 0; }
-nav ul a { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2rem; min-height: 3rem; font-size: 15px; color: #fff; text-decoration: none; background: transparent; border: 2px solid #fff; border-radius: 0; position: relative; transition: background 0.2s, transform 0.2s, color 0.2s; }
+nav ul a,
+nav ul a:link,
+nav ul a:visited,
+nav ul a:hover,
+nav ul a:active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  min-height: 3rem;
+  font-size: 15px;
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 0;
+  position: relative;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
 nav ul a:hover { background: rgba(255,255,255,0.12); color: #fff; transform: translateY(-1px); }
 
 .hero {
@@ -56,14 +74,7 @@ section#about { max-width: 800px; }
 .about-image img { width: 100%; height: auto; display: block; }
 
 h2 { font-size: 20px; font-weight: 500; margin-bottom: 1.5rem; }
-
-section#about h2 {
-  font-size: 3rem;
-  font-family: 'Noto Sans JP', serif;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
-}
+section#about h2 { font-size: 3rem; font-family: 'Noto Sans JP', serif; font-weight: 500; letter-spacing: 0.04em; line-height: 1.1; }
 
 .countdown { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
 .countdown-item { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
@@ -77,19 +88,8 @@ section#about h2 {
 .info-block .label { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
 .info-block .value { font-size: 14px; color: #555; line-height: 1.8; }
 
-.full-width-container {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-.hero-img {
-  display: block; 
-  width: 100%; 
-  max-width: 100%;
-  height: auto; 
-  border: none; 
-  outline: none;
-}
+.full-width-container { width: 100%; padding: 0; margin: 0;}
+.hero-img { display: block;  width: 100%;  max-width: 100%; height: auto; border: none; outline: none; }
 
 .map-placeholder { width: 100%; height: 240px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #aaa; border: 0.5px solid #e5e5e5; }
 
@@ -145,7 +145,7 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .timetable-sub { font-size: 13px; color: #585858; margin-left: 0.4rem; }
 .timetable-body { display: flex; flex-direction: column; overflow: visible; position: relative; }
 .timetable-scroll { max-height: 70vh; overflow-y: auto; overflow-x: visible; position: relative; }
-.timetable-header { font-size: 13px; padding: 0.5rem 0.4rem; text-align: center; }
+.timetable-header { font-size: 18px; font-weight: 500; padding: 0.5rem 0.4rem; text-align: center; }
 .timetable-scroll { max-height: 60vh; }
 .timetable-scroll::-webkit-scrollbar { width: 4px; }
 .timetable-scroll::-webkit-scrollbar-track { background: #f5f5f5; }
@@ -160,6 +160,10 @@ footer { background: #f9f9f9; border-top: 0.5px solid #e5e5e5; margin-top: 4rem;
 .tt-program { position: absolute; top: 0; z-index: 1; display: flex; align-items: center; font-size: 14px; color: #333; font-weight: 500; cursor: pointer; background: #ffffff; border-radius: 4px; padding-top: 4px; padding-bottom: 4px; overflow: visible; isolation: isolate; }
 .tt-program-left { right: 0; justify-content: flex-end; padding-right: 0.75rem; border-right: 3px solid #333; }
 .tt-program-right { left: 0; justify-content: flex-start; padding-left: 0.75rem; border-left: 3px solid #333; }
+.timetable-scroll { overflow: visible; position: relative; }
+.tt-row { display: grid; grid-template-columns: 1fr 80px 1fr; height: 36px; position: relative; overflow: visible; transition: all 0.15s ease; }
+.tt-program { position: absolute; top: 0; z-index: 1; display: flex; align-items: center; font-size: 11px; color: #333; font-weight: 400; opacity: 0.25; cursor: pointer; background: #fff; border-radius: 4px; padding-top: 4px; padding-bottom: 4px; overflow: visible; isolation: isolate; transition: font-size 0.15s ease, opacity 0.15s ease, font-weight 0.15s ease; }
+.tt-time { font-size: 9px; color: #555; line-height: 1; padding-top: 2px; white-space: nowrap; opacity: 0.25; transition: font-size 0.15s ease, opacity 0.15s ease; }
 
 .global-tooltip { position: fixed; left: 50%; bottom: 1.5rem; transform: translateX(-50%) translateY(16px); z-index: 999999; width: 500px; max-height: 70vh; background: #fff; border-radius: 12px; padding: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.18); opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: #ccc #f5f5f5; }
 .global-tooltip.visible { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
