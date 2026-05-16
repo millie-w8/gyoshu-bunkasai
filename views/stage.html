@@ -96,6 +96,7 @@ function openFullscreen(src) {
   video.controls = true;
   video.autoplay = true;
   video.playsinline = true;
+  video.setAttribute('webkit-playsinline', 'webkit-playsinline');
   video.style.cssText = `
     max-width: 100vw;
     max-height: 90vh;
@@ -155,7 +156,7 @@ window.addEventListener('DOMContentLoaded', () => {
       html += `<img src="${slot.img}" class="tooltip-img">`;
     }
     if (slot.video) {
-      html += `<div class="tooltip-video-wrapper"><video src="${slot.video}" controls playsinline preload="none" class="tooltip-video"></video></div>`;
+      html += `<div class="tooltip-video-wrapper"><video src="${slot.video}" controls playsinline webkit-playsinline preload="none" class="tooltip-video"></video></div>`;
     }
     if (slot.chorus) {
       const cells = chorusVideos.map(v => `
@@ -447,32 +448,32 @@ window.addEventListener('DOMContentLoaded', () => {
   <div class="catalog-grid" id="catalogGrid">
 
     <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts1_j6bjga.mp4')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts1_j6bjga.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts1_j6bjga.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">バンド愛まみこ</div>
     </div>
 
     <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827592/shorts2_jmvd6q.mp4')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827592/shorts2_jmvd6q.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827592/shorts2_jmvd6q.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">加藤紗和</div>
     </div>
 
     <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827596/shorts3_nl4gom.mp4')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827596/shorts3_nl4gom.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827596/shorts3_nl4gom.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">Nocturne</div>
     </div>
 
     <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts4_qk0ndm.mp4')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts4_qk0ndm.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778827593/shorts4_qk0ndm.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">Simple is best</div>
     </div>
 
-    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mov')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mov" muted playsinline preload="metadata" loop class="catalog-video"></video>
+    <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mp4')">
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778849980/shorts5_boxdci.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">BLUE NOVA</div>
     </div>
 
     <div class="catalog-item" onclick="openFullscreen('https://res.cloudinary.com/dniymrq57/video/upload/v1778850370/shorts6_szgd8p.mp4')">
-      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778850370/shorts6_szgd8p.mp4" muted playsinline preload="metadata" loop class="catalog-video"></video>
+      <video src="https://res.cloudinary.com/dniymrq57/video/upload/v1778850370/shorts6_szgd8p.mp4" muted playsinline webkit-playsinline preload="metadata" loop class="catalog-video"></video>
       <div class="catalog-caption">AKRS</div>
     </div>
 
