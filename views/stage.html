@@ -71,6 +71,15 @@ const chorusVideos = [
 
 const ROW_HEIGHT = 32;
 
+// Global helper to request MP4/H.264 from Cloudinary when possible
+function ensureMp4Url(url) {
+  if (!url) return url;
+  if (url.includes('res.cloudinary.com') && url.includes('/video/upload/') && !url.includes('q_auto')) {
+    return url.replace('/video/upload/', '/video/upload/q_auto,f_mp4,vc_auto/');
+  }
+  return url;
+}
+
 function generateTimes() {
   const times = [];
   let h = 8, m = 40;
@@ -83,6 +92,17 @@ function generateTimes() {
 }
 
 function openFullscreen(src) {
+  // ensure Cloudinary serves an MP4/H.264 compatible stream for iOS
+  function ensureMp4Url(url) {
+    if (!url) return url;
+    if (url.includes('res.cloudinary.com') && url.includes('/video/upload/') && !url.includes('q_auto')) {
+      return url.replace('/video/upload/', '/video/upload/q_auto,f_mp4,vc_auto/');
+    }
+    return url;
+  }
+
+  // normalize incoming src
+  src = ensureMp4Url(src);
   const overlay = document.createElement('div');
   overlay.id = 'chorusOverlay';
   overlay.style.cssText = `
@@ -148,6 +168,18 @@ window.addEventListener('DOMContentLoaded', () => {
   tooltip.className = 'global-tooltip';
   document.body.appendChild(tooltip);
 
+  // At startup, rewrite any static video URLs to request MP4/H.264 from Cloudinary
+  document.querySelectorAll('video').forEach(v => {
+    const src = v.getAttribute('src') || (v.querySelector('source') && v.querySelector('source').getAttribute('src'));
+    if (!src) return;
+    if (src.includes('res.cloudinary.com') && src.includes('/video/upload/') && !src.includes('q_auto')) {
+      const newUrl = src.replace('/video/upload/', '/video/upload/q_auto,f_mp4,vc_auto/');
+      if (v.getAttribute('src')) v.setAttribute('src', newUrl);
+      const s = v.querySelector('source'); if (s) s.setAttribute('src', newUrl);
+      try { v.load(); } catch(e) {}
+    }
+  });
+
   function showTooltip(slot) {
     let html = `
       <div style="clear:both;"></div>
@@ -156,7 +188,8 @@ window.addEventListener('DOMContentLoaded', () => {
       html += `<img src="${slot.img}" class="tooltip-img">`;
     }
     if (slot.video) {
-      html += `<div class="tooltip-video-wrapper"><video src="${slot.video}" controls playsinline webkit-playsinline preload="none" class="tooltip-video"></video></div>`;
+      const vurl = (slot.video && slot.video.includes('/video/upload/')) ? slot.video.replace('/video/upload/', '/video/upload/q_auto,f_mp4,vc_auto/') : slot.video;
+      html += `<div class="tooltip-video-wrapper"><video src="${vurl}" controls playsinline webkit-playsinline preload="none" class="tooltip-video"></video></div>`;
     }
     if (slot.chorus) {
       const cells = chorusVideos.map(v => `
